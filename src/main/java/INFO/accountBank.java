@@ -9,7 +9,7 @@ import javafx.scene.text.Text;
 public class accountBank {
     static account[] accounts = new account[10000];
     static int count =0;
-    public static void addAccount(String username , String password, String password1 ,String firstname , String lastname,String email , String phoneNumber , Text text1 ,Text text2,Text text3,Text text4,Text text5 ){
+    public static void addAccount(String username , String password, String password1 ,String firstname , String lastname,String email , String phoneNumber , Text text1 , Text text2, Text text3, Text text4, Text text5 ){
         boolean q1 = false,q2 = false,q3 = false,q4 = false,q5 = false;
         if(!password.equals(password1)){
             text1.setText("Passwords do not match");
@@ -19,26 +19,39 @@ public class accountBank {
             text1.setText("Password must contain a number");
         }else if(!passAcceptable(password)[2]) {
             text1.setText("Password must contain a character");
-        }else q1 = true;
+        }else {
+            text1.setText("");
+            q1 = true;
+        }
         if(!usernameAcceptable(username)[0]){
             text2.setText("Username must contain a character");
         }else if(!usernameAcceptable(username)[1]){
             text2.setText("Username is taken");
-        }else q2 = true;
+        }else {
+            text2.setText("");
+            q2 = true;
+        }
         if(firstname.isEmpty()){
             text3.setText("Firstname needed");
         }else if(lastname.isEmpty()){
             text3.setText("Lastname needed");
-        }else q3 = true;
+        }else {
+            text3.setText("");
+            q3 = true;
+        }
         if(phoneNumber.isEmpty()){
             text5.setText("Phone number is taken");
-        }else q4 = true;
-        if(email.isEmpty()){
+        }else {
+            text4.setText("");
+            q4 = true;
+        }
+            if(email.isEmpty()){
             text4.setText("Email is taken");
-        }else q5 = true;
+        }else {
+                text5.setText("");
+                q5 = true;
+            }
         if(q1 && q2 && q3 && q4 && q5){
-            text1.setText("");
-            text2.setText("");
             account account = new account(username, password, firstname, lastname, email, phoneNumber);
             System.out.println("user " + username + " with pass " + password + " is added in slot " + count + " with tier " + account.tier.toString());
             accounts[count++] = account;

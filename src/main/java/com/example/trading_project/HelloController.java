@@ -25,7 +25,7 @@ public class HelloController {
 
     @FXML
     protected void SignUp_Click() {
-        accountBank.addAccount(username.getText(),password.getText(),password1.getText(),firstname.getText(),lastname.getText(),email.getText(),phonenumber.getText(),errorField2 , errorField1, firstlastnameerror,phoneerror,emailerror);
+        accountBank.addAccount(username.getText(),password.getText(),password1.getText(),firstname.getText(),lastname.getText(),email.getText(),phonenumber.getText(),errorField2 , errorField1, firstlastnameerror,emailerror,phoneerror);
     }
     @FXML
     protected void Login_Page_Click() {
