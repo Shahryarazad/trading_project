@@ -9,24 +9,26 @@ import INFO.*;
 import static com.example.trading_project.HelloApplication.*;
 
 public class HelloController {
-
-    public Text passwordField;
-    public Text usernameField;
-    public TextField username;
+    public TextField firstname;
+    public TextField lastname;
     public TextField password;
+    public TextField password1;
+    public TextField username;
+    public Text errorField1;
+    public Text errorField2;
+    public TextField email;
+    public TextField phonenumber;
+    public Text firstlastnameerror;
+    public Text phoneerror;
+    public Text emailerror;
+
 
     @FXML
     protected void SignUp_Click() {
-        accountBank.addAccount(username.getText(),password.getText());
+        accountBank.addAccount(username.getText(),password.getText(),password1.getText(),firstname.getText(),lastname.getText(),email.getText(),phonenumber.getText(),errorField2 , errorField1, firstlastnameerror,phoneerror,emailerror);
     }
     @FXML
-    protected void Username_TextBox_Selected() {
-        passwordField.setVisible(password.getCharacters().isEmpty()&&!password.isFocused());
-        usernameField.setVisible(username.getCharacters().isEmpty()&&!username.isFocused());
-    }
-    @FXML
-    protected void Password_TextBox_Selected() {
-        passwordField.setVisible(password.getCharacters().isEmpty()&&!password.isFocused());
-        usernameField.setVisible(username.getCharacters().isEmpty()&&!username.isFocused());
+    protected void Login_Page_Click() {
+        System.out.println(1);
     }
 }
