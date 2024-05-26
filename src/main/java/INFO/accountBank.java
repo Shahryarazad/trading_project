@@ -1,14 +1,14 @@
 package INFO;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.example.trading_project.HelloController;
+
 import javafx.scene.text.Text;
 
 
 public class accountBank {
-    static account[] accounts = new account[10000];
-    static int count =0;
+    static ArrayList<account> accounts = new ArrayList<account>();
     public static void addAccount(String username , String password, String password1 ,String firstname , String lastname,String email , String phoneNumber , Text text1 , Text text2, Text text3, Text text4, Text text5 ){
         boolean q1 = false,q2 = false,q3 = false,q4 = false,q5 = false;
         if(!password.equals(password1)){
@@ -39,22 +39,26 @@ public class accountBank {
             text3.setText("");
             q3 = true;
         }
-        if(phoneNumber.isEmpty()){
-            text5.setText("Phone number is taken");
-        }else {
-            text4.setText("");
+        if(!phoneNumberAcceptable(phoneNumber)[0]){
+            text5.setText("Phone number needed");
+        }else if(!phoneNumberAcceptable(phoneNumber)[1]){
+            text5.setText("Phone can only include numbers");
+        }else{
+            text5.setText("");
             q4 = true;
         }
-            if(email.isEmpty()){
-            text4.setText("Email is taken");
-        }else {
-                text5.setText("");
+            if(!emailAcceptable(email)[0]){
+            text4.setText("Email needed");
+        }else if(!emailAcceptable(email)[1]){
+            text4.setText("Email does not look right");
+        }else{
+                text4.setText("");
                 q5 = true;
             }
         if(q1 && q2 && q3 && q4 && q5){
             account account = new account(username, password, firstname, lastname, email, phoneNumber);
-            System.out.println("user " + username + " with pass " + password + " is added in slot " + count + " with tier " + account.tier.toString());
-            accounts[count++] = account;
+            System.out.println("user " + username + " with pass " + password + " is added in slot " + accounts.size() + " with tier " + account.tier.toString());
+            accounts.add(account);
         }
     }
     public static boolean[] passAcceptable(String password) {
@@ -66,12 +70,22 @@ public class accountBank {
     }
     public static boolean[] usernameAcceptable(String username) {
         boolean isUnique = true;
-        for (int i = 0; i < count; i++){
-             {
-                 if(accounts[i].username.equals(username))
-                isUnique = false;
+        for (INFO.account account : accounts) {
+            {
+                if (account.username.equals(username))
+                    isUnique = false;
             }
         }
         return new boolean[]{!username.isEmpty() , isUnique};
     }
+    public static boolean[] phoneNumberAcceptable(String phoneNumber) {
+        Pattern pattern = Pattern.compile("[0-9]");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        boolean numbered = matcher.find();
+        return new boolean[]{!phoneNumber.isEmpty() , numbered};
+    }
+    public static boolean[] emailAcceptable(String email) {
+        return new boolean[]{!email.isEmpty() , email.lastIndexOf(".")<email.length()-1 && email.lastIndexOf(".")-email.lastIndexOf("@")>1 && email.lastIndexOf("@")!=0};
+    }
+
 }

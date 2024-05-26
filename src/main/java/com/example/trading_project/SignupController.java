@@ -1,14 +1,22 @@
 package com.example.trading_project;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import INFO.*;
+import javafx.stage.Stage;
 
-import static com.example.trading_project.HelloApplication.*;
+import java.io.IOException;
+import java.util.Objects;
 
-public class HelloController {
+public class SignupController {
     public TextField firstname;
     public TextField lastname;
     public TextField password;
@@ -21,14 +29,21 @@ public class HelloController {
     public Text firstlastnameerror;
     public Text phoneerror;
     public Text emailerror;
-
+    public AnchorPane anchorPane;
 
     @FXML
     protected void SignUp_Click() {
         accountBank.addAccount(username.getText(),password.getText(),password1.getText(),firstname.getText(),lastname.getText(),email.getText(),phonenumber.getText(),errorField2 , errorField1, firstlastnameerror,emailerror,phoneerror);
     }
     @FXML
-    protected void Login_Page_Click() {
-        System.out.println(1);
+    protected void Login_Page_Click() throws IOException {
+        AnchorPane newAnchorPane = FXMLLoader.load(Objects.requireNonNull(mainCode.class.getResource("login.fxml")));
+        anchorPane.getChildren().removeAll();
+        anchorPane.getChildren().setAll();
     }
+
+
+
+
+
 }

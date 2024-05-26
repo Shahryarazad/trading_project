@@ -8,8 +8,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Scene xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trading_project.HelloController">
-    <AnchorPane prefHeight="820.0" prefWidth="464.0">
+<Scene xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trading_project.SignupController">
+    <AnchorPane fx:id="anchorPane" prefHeight="820.0" prefWidth="464.0">
       <children>
          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="560.0" layoutX="18.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="429.0" />
          <TextField fx:id="password" layoutX="228.0" layoutY="315.0" prefHeight="25.0" prefWidth="199.0" promptText="Password">
@@ -35,7 +35,7 @@
                <Font size="11.0" />
             </font>
          </Text>
-         <Text fx:id="errorField1" disable="true" fill="RED" layoutX="38.0" layoutY="488.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="191.9365234375" />
+         <Text fx:id="errorField1" disable="true" fill="RED" layoutX="38.0" layoutY="486.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="191.9365234375" />
          <Text fill="#727272" layoutX="346.0" layoutY="731.0" onMouseClicked="#Login_Page_Click" strokeType="OUTSIDE" strokeWidth="0.0" text="login" wrappingWidth="41.13671875">
             <font>
                <Font size="17.0" />
@@ -76,7 +76,7 @@
                <Font size="11.0" />
             </font>
          </Text>
-         <Text fx:id="phoneerror" disable="true" fill="RED" layoutX="228.0" layoutY="487.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="191.9365234375" />
+         <Text fx:id="phoneerror" disable="true" fill="RED" layoutX="232.0" layoutY="487.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="191.9365234375" />
          <Text fx:id="emailerror" disable="true" fill="RED" layoutX="37.0" layoutY="561.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="396.9365234375" />
       </children></AnchorPane>
 </Scene>
