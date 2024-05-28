@@ -15,10 +15,10 @@ public class account {
         Normal,ADMIN,Demo
     }
     tier tier;
-    String username;
-    String password;
+    public String username;
+    public String password;
     String firstName;
     String lastName;
-    String email;
+    public String email;
     String phoneNumber;
 }
