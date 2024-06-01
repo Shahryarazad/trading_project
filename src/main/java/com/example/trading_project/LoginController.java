@@ -13,7 +13,6 @@ import java.util.Objects;
 
 import static INFO.accountBank.accounts;
 import static INFO.accountBank.logIn;
-//import static INFO.tempMemory.*;
 
 public class LoginController {
 

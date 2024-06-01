@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -9,7 +10,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="820.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trading_project.SignupController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="501.0" layoutX="18.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="429.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ebebeb" height="550.0" layoutX="18.0" layoutY="203.0" stroke="BLACK" strokeType="INSIDE" width="429.0" />
       <TextField fx:id="password" layoutX="228.0" layoutY="315.0" prefHeight="25.0" prefWidth="199.0" promptText="Password">
          <font>
             <Font size="16.0" />
@@ -25,7 +26,7 @@
             <Font size="38.0" />
          </font>
       </Text>
-      <Button layoutX="37.0" layoutY="577.0" mnemonicParsing="false" onAction="#SignUp_Click" prefHeight="40.0" prefWidth="392.0" text="Sign Up" textAlignment="CENTER">
+      <Button layoutX="36.0" layoutY="653.0" mnemonicParsing="false" onAction="#SignUp_Click" prefHeight="40.0" prefWidth="392.0" text="Sign Up" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
@@ -36,7 +37,7 @@
          </font>
       </Text>
       <Text fx:id="errorField1" disable="true" fill="RED" layoutX="38.0" layoutY="486.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="191.9365234375" />
-      <Text fill="#727272" layoutX="268.0" layoutY="652.0" onMouseClicked="#Login_Page_Click" strokeType="OUTSIDE" strokeWidth="0.0" text="login" wrappingWidth="41.13671875">
+      <Text fill="#727272" layoutX="285.0" layoutY="728.0" onMouseClicked="#Login_Page_Click" strokeType="OUTSIDE" strokeWidth="0.0" text="login" wrappingWidth="41.13671875">
          <font>
             <Font size="17.0" />
          </font>
@@ -56,7 +57,7 @@
             <Font size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="email" layoutX="36.0" layoutY="504.0" prefHeight="25.0" prefWidth="393.0" promptText="Email">
+      <TextField fx:id="email" layoutX="36.0" layoutY="498.0" prefHeight="25.0" prefWidth="393.0" promptText="Email">
          <font>
             <Font size="16.0" />
          </font>
@@ -72,11 +73,16 @@
          </font>
       </Text>
       <Text fx:id="phoneerror" disable="true" fill="RED" layoutX="232.0" layoutY="487.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="191.9365234375" />
-      <Text fx:id="emailerror" disable="true" fill="RED" layoutX="37.0" layoutY="561.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="396.9365234375" />
-      <Text fill="#727272" layoutX="67.0" layoutY="653.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already A Member?" wrappingWidth="152.13671875">
+      <Text fx:id="emailerror" disable="true" fill="RED" layoutX="38.0" layoutY="554.0" stroke="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="396.9365234375" />
+      <Text fill="#727272" layoutX="84.0" layoutY="729.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already A Member?" wrappingWidth="152.13671875">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
+      <Button layoutX="58.0" layoutY="579.0" mnemonicParsing="false" onAction="#file" prefHeight="40.0" prefWidth="102.0" text="Add image">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <ImageView fx:id="preview" fitHeight="99.0" fitWidth="163.0" layoutX="218.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

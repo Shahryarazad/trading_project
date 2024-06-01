@@ -3,6 +3,7 @@ package INFO;
 import com.example.trading_project.InputChecker;
 import com.example.trading_project.mainCode;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 public class accountBank extends InputChecker {
     public static ArrayList<account> accounts = new ArrayList<account>();
-    public static account addAccount(String username , String password, String password1 ,String firstname , String lastname,String email , String phoneNumber , Text text1 , Text text2, Text text3, Text text4, Text text5 ){
+    public static account addAccount(String username , String password, String password1 , String firstname , String lastname, String email , String phoneNumber, Image profilePic, Text text1 , Text text2, Text text3, Text text4, Text text5 ){
         boolean q1 = false,q2 = false,q3 = false,q4 = false,q5 = false;
         boolean[] pass = passAcceptable(password) , name = signupUsernameAcceptable(username), number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
         if(!password.equals(password1)){
@@ -60,7 +61,7 @@ public class accountBank extends InputChecker {
                 q5 = true;
             }
         if(q1 && q2 && q3 && q4 && q5){
-            account account = new account(username, password, firstname, lastname, email, phoneNumber);
+            account account = new account(username, password, firstname, lastname, email, phoneNumber,profilePic);
             System.out.println("user " + username + " with pass " + password + " is added in slot " + accounts.size() + " with tier " + account.tier.toString());
             accounts.add(account);
             return account;
@@ -71,8 +72,8 @@ public class accountBank extends InputChecker {
     public static void logIn(account account,AnchorPane anchorPane) throws IOException {
         if(account == null)
             return;
-        else System.out.println("logged in to account with name " + account.username+" with password" + account.password);
         AnchorPane newAnchorPane = FXMLLoader.load(Objects.requireNonNull(mainCode.class.getResource("dashboard.fxml")));
+        newAnchorPane.setUserData(account);
         anchorPane.getChildren().removeAll();
         anchorPane.getChildren().setAll(newAnchorPane);
     }

@@ -15,7 +15,7 @@ public class mainCode extends Application {
         AnchorPane BaseAnchor = new AnchorPane();
         Scene base = new Scene(BaseAnchor);
         stage.setHeight(820);
-        stage.setWidth(482);
+        stage.setWidth(480);
         stage.setResizable(false);
         stage.setTitle("signup");
         stage.setScene(base);
