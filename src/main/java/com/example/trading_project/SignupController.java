@@ -1,5 +1,6 @@
 package com.example.trading_project;
 
+import INFO.account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,5 +56,9 @@ public class SignupController {
         File file = fileChooser.showOpenDialog(((Stage) anchorPane.getUserData()));
         image = new Image(file.toURI().toString());
         preview.setImage(image);
+    }
+
+    public void Debug(ActionEvent event) throws IOException {
+        logIn(new account("a","1234567a","a","a","a","a",image),anchorPane);
     }
 }

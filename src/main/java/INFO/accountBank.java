@@ -62,8 +62,51 @@ public class accountBank extends InputChecker {
             }
         if(q1 && q2 && q3 && q4 && q5){
             account account = new account(username, password, firstname, lastname, email, phoneNumber,profilePic);
-            System.out.println("user " + username + " with pass " + password + " is added in slot " + accounts.size() + " with tier " + account.tier.toString());
             accounts.add(account);
+            return account;
+        }
+        return null;
+    }
+    public static account editAccount(String username , String password , String firstname , String lastname, String email , String phoneNumber, Image profilePic, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
+        boolean q2 = false,q3 = false,q4 = false,q5 = false;
+        boolean[] pass = passAcceptable(password) , number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
+        if(!pass[0]){
+            passErrorField.setText("Password must be at least 8 characters long");
+        }else if(!pass[1]){
+            passErrorField.setText("Password must contain a number");
+        }else if(!pass[2]) {
+            passErrorField.setText("Password must contain a character");
+        }else {
+            passErrorField.setText("");
+            q2 = true;
+        }
+        if(firstname.isEmpty()){
+            firstnameErrorField.setText("Firstname needed");
+        }else if(lastname.isEmpty()){
+            lastnameErrorField.setText("Lastname needed");
+        }else {
+            firstnameErrorField.setText("");
+            lastnameErrorField.setText("");
+            q3 = true;
+        }
+        if(!number[0]){
+            phoneErrorField.setText("Phone number needed");
+        }else if(!number[1]){
+            phoneErrorField.setText("Phone can only include numbers");
+        }else{
+            phoneErrorField.setText("");
+            q4 = true;
+        }
+        if(!emailE[0]){
+            emailErrorField.setText("Email needed");
+        }else if(!emailE[1]){
+            emailErrorField.setText("Email does not look right");
+        }else{
+            emailErrorField.setText("");
+            q5 = true;
+        }
+        if(q2 && q3 && q4 && q5){
+            account account = new account(username, password, firstname, lastname, email, phoneNumber,profilePic);
             return account;
         }
         return null;
