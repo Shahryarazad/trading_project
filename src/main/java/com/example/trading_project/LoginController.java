@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.Objects;
 
-import static INFO.accountBank.accounts;
+//import static INFO.accountBank.accounts;
 import static INFO.accountBank.logIn;
 
 public class LoginController {
@@ -25,11 +25,17 @@ public class LoginController {
     public static String tempEmail;
     public TextField Email;
 
-    public void LogIn_Click(ActionEvent event) throws IOException {
-        for (account account : accounts) {
-            if (account.username.equals(username.getText()) && account.password.equals(password.getText()))
-                logIn(account,anchorPane);
+    public void LogIn_Click(ActionEvent event) throws IOException, ClassNotFoundException {
+        mainCode.socketOut.println("login");
+        String[] strings = {username.getText(), password.getText()};
+        mainCode.objOut.writeObject(strings);
+        if (mainCode.socketIn.readLine().equals("true")) {
+            account userAccount = (account) mainCode.objIn.readObject();
+            mainCode.account = userAccount;
+            logIn(userAccount, anchorPane);
+            System.out.println("logged in successfully");
         }
+
     }
 
     public void SignUpClick(MouseEvent mouseEvent) throws IOException {
@@ -51,12 +57,12 @@ public class LoginController {
         anchorPane.getChildren().setAll(newAnchorPane);
     }
 
-    public void Confirm_Click(ActionEvent event) throws IOException {
-        //TODO: add code if statement
-        System.out.println(tempEmail);
-        for (account account: accounts) {
-            if(account.email.equals(tempEmail))
-                logIn(account,anchorPane);
-        }
-    }
+//    public void Confirm_Click(ActionEvent event) throws IOException {
+//        //TODO: add code if statement
+//        System.out.println(tempEmail);
+//        for (account account: accounts) {
+//            if(account.email.equals(tempEmail))
+//                logIn(account,anchorPane);
+//        }
+//    }
 }

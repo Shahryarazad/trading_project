@@ -4,6 +4,7 @@ import com.example.trading_project.InputChecker;
 import com.example.trading_project.mainCode;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
@@ -12,10 +13,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class accountBank extends InputChecker {
-    public static ArrayList<account> accounts = new ArrayList<account>();
-    public static account addAccount(String username , String password, String password1 , String firstname , String lastname, String email , String phoneNumber, Image profilePic, Text text1 , Text text2, Text text3, Text text4, Text text5 ){
+//    public static ArrayList<account> accounts = new ArrayList<account>();
+    public static account addAccount(String username , String password, String password1 , String firstname , String lastname, String email , String phoneNumber, Text text1 , Text text2, Text text3, Text text4, Text text5 ){
         boolean q1 = false,q2 = false,q3 = false,q4 = false,q5 = false;
-        boolean[] pass = passAcceptable(password) , name = signupUsernameAcceptable(username), number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
+        boolean[] pass = passAcceptable(password), number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
+        boolean name = signupUsernameAcceptable(username);
         if(!password.equals(password1)){
             text1.setText("Passwords do not match");
         }else if(!pass[0]){
@@ -28,10 +30,8 @@ public class accountBank extends InputChecker {
             text1.setText("");
             q1 = true;
         }
-        if(!name[0]){
+        if(!name){
             text2.setText("Username must contain a character");
-        }else if(!name[1]){
-            text2.setText("Username is taken");
         }else {
             text2.setText("");
             q2 = true;
@@ -61,13 +61,12 @@ public class accountBank extends InputChecker {
                 q5 = true;
             }
         if(q1 && q2 && q3 && q4 && q5){
-            account account = new account(username, password, firstname, lastname, email, phoneNumber,profilePic);
-            accounts.add(account);
+            account account = new account(username, password, firstname, lastname, email, phoneNumber);
             return account;
         }
         return null;
     }
-    public static account editAccount(String username , String password , String firstname , String lastname, String email , String phoneNumber, Image profilePic, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
+    public static account editAccount(String username , String password , String firstname , String lastname, String email , String phoneNumber, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
         boolean q2 = false,q3 = false,q4 = false,q5 = false;
         boolean[] pass = passAcceptable(password) , number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
         if(!pass[0]){
@@ -106,7 +105,7 @@ public class accountBank extends InputChecker {
             q5 = true;
         }
         if(q2 && q3 && q4 && q5){
-            account account = new account(username, password, firstname, lastname, email, phoneNumber,profilePic);
+            account account = new account(username, password, firstname, lastname, email, phoneNumber);
             return account;
         }
         return null;

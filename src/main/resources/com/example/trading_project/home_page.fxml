@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="651.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trading_project.HomePageController">
+   <children>
+      <Line endX="97.0" layoutX="812.0" layoutY="76.0" startX="-785.0" />
+      <ImageView fx:id="imageIcon" fitHeight="52.0" fitWidth="57.0" layoutX="863.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/imageIcon.png" />
+         </image></ImageView>
+      <Text fill="#4b0b66" layoutX="758.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="صرافی آنلاین ">
+         <font>
+            <Font name="B Titr Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="535.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="پروفایل" wrappingWidth="67.0">
+         <font>
+            <Font name="B Titr Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="412.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت لحظه ای " wrappingWidth="111.2412109375">
+         <font>
+            <Font name="B Titr Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="333.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="خدمات" wrappingWidth="57.0">
+         <font>
+            <Font name="B Titr Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="256.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="راهنما" wrappingWidth="41.0">
+         <font>
+            <Font name="B Titr Bold" size="15.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tab" layoutX="67.0" layoutY="139.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="441.0" prefWidth="825.0">
+        <columns>
+          <TableColumn fx:id="currencyName" prefWidth="192.0" text="نام ارز" />
+          <TableColumn fx:id="currencyValue" minWidth="0.0" prefWidth="154.0" text="قیمت" />
+            <TableColumn fx:id="changes" minWidth="0.0" prefWidth="144.0" text="تغییرات" />
+            <TableColumn fx:id="maxValue" minWidth="0.0" prefWidth="165.0" text="بیشترین قیمت" />
+            <TableColumn fx:id="minValue" minWidth="0.0" prefWidth="169.0" text="کمترین قیمت" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

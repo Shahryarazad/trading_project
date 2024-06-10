@@ -2,6 +2,7 @@ package com.example.trading_project;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import static INFO.accountBank.*;
 public abstract class InputChecker {
     public static boolean[] passAcceptable(String password) {
@@ -11,15 +12,16 @@ public abstract class InputChecker {
         Matcher matcher1 = pattern1.matcher(password);
         return new boolean[]{password.length() >= 8, matcher.find(), matcher1.find()};
     }
-    public static boolean[] signupUsernameAcceptable(String username) {
-        boolean isUnique = true;
-        for (INFO.account account : accounts) {
-            {
-                if (account.username.equals(username))
-                    isUnique = false;
-            }
-        }
-        return new boolean[]{!username.isEmpty() , isUnique};
+    public static boolean signupUsernameAcceptable(String username) {
+//        boolean isUnique = true;
+//        for (INFO.account account : accounts) {
+//            {
+//                if (account.username.equals(username))
+//                    isUnique = false;
+//            }
+//        }
+//        return new boolean[]{!username.isEmpty() , isUnique};
+        return !username.isEmpty();
     }
     public static boolean[] phoneNumberAcceptable(String phoneNumber) {
         Pattern pattern = Pattern.compile("[^0-9]");

@@ -12,7 +12,7 @@ public class Server {
     ServerSocket serverSocket = null;
     Socket socket = null;
     DataInputStream input = null;
-    public Server(int port){
+    public Server(int port) {
         try {
             serverSocket = new ServerSocket(port);
             System.out.println("server online");

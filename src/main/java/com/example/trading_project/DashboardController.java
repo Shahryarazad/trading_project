@@ -12,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import static INFO.accountBank.accounts;
+//import static INFO.accountBank.accounts;
 import static INFO.accountBank.editAccount;
 
 public class DashboardController {
@@ -60,12 +60,12 @@ public class DashboardController {
         username.setEditable(false);
     }
 
-    public void Edit(ActionEvent event) {
-        account newAccount = editAccount(username.getText(),password.getText(),firstname.getText(),lastname.getText(),Email.getText(),phoneNumber.getText(), ((account) anchorPane.getUserData()).profilePic,password1,firstname1,lastname1,Email1,phoneNumber1);
-        if(!(newAccount == null))
-            accounts.set(accounts.indexOf(((account) anchorPane.getUserData())),newAccount);
-        anchorPane.setUserData(newAccount);
-    }
+//    public void Edit(ActionEvent event) {
+//        account newAccount = editAccount(username.getText(),password.getText(),firstname.getText(),lastname.getText(),Email.getText(),phoneNumber.getText(), ((account) anchorPane.getUserData()).profilePic,password1,firstname1,lastname1,Email1,phoneNumber1);
+//        if(!(newAccount == null))
+//            accounts.set(accounts.indexOf(((account) anchorPane.getUserData())),newAccount);
+//        anchorPane.setUserData(newAccount);
+//    }
 
     public void Menu_Click(MouseEvent mouseEvent) {
         if((menuSlider.getStatus() == Animation.Status.STOPPED)){

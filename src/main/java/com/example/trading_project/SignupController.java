@@ -4,15 +4,17 @@ import INFO.account;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -38,8 +40,28 @@ public class SignupController {
 
     @FXML
     protected void SignUp_Click() throws IOException {
-        logIn(addAccount(username.getText(),password.getText(),password1.getText(),firstname.getText(),lastname.getText(),email.getText(),phonenumber.getText(),image,errorField2 , errorField1, firstlastnameerror,emailerror,phoneerror),anchorPane);
+        account userAccount = addAccount(username.getText(),password.getText(),password1.getText(),firstname.getText(),lastname.getText(),email.getText(),phonenumber.getText(),errorField2 , errorField1, firstlastnameerror,emailerror,phoneerror);
+        if (userAccount != null) {
+            mainCode.socketOut.println("sign up");
+            mainCode.objOut.writeObject(userAccount);
+            if (mainCode.socketIn.readLine().equals("true")) {
+                mainCode.account = userAccount;
+//                logIn(userAccount, anchorPane);
+                go_to_homePage(userAccount, anchorPane);
+                System.out.println("signed up successfully");
+            }
+        }
     }
+
+    protected void go_to_homePage(account account, AnchorPane anchorPane) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home_page.fxml")));
+        Scene scene = new Scene(root);
+        mainCode.mainStage.setScene(scene);
+        mainCode.mainStage.setWidth(950);
+        mainCode.mainStage.setHeight(651);
+        mainCode.mainStage.show();
+    }
+
     @FXML
     protected void Login_Page_Click() throws IOException {
         AnchorPane newAnchorPane = FXMLLoader.load(Objects.requireNonNull(mainCode.class.getResource("login.fxml")));
@@ -48,17 +70,17 @@ public class SignupController {
     }
 
 
-    public void file(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image files", "*.jpg")
-        );
-        File file = fileChooser.showOpenDialog(((Stage) anchorPane.getUserData()));
-        image = new Image(file.toURI().toString());
-        preview.setImage(image);
-    }
+//    public void file(ActionEvent event) {
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.getExtensionFilters().addAll(
+//                new FileChooser.ExtensionFilter("Image files", "*.jpg")
+//        );
+//        File file = fileChooser.showOpenDialog(((Stage) anchorPane.getUserData()));
+//        image = new Image(file.toURI().toString());
+//        preview.setImage(image);
+//    }
 
     public void Debug(ActionEvent event) throws IOException {
-        logIn(new account("a","1234567a","a","a","a","a",image),anchorPane);
+        logIn(new account("a","1234567a","a","a","a","a"),anchorPane);
     }
 }
