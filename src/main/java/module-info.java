@@ -3,7 +3,8 @@ module com.example.trading_project {
     requires javafx.fxml;
     requires java.sql;
 
-
-    opens com.example.trading_project to javafx.fxml;
+    opens INFO to javafx.fxml,java.base;
+    exports INFO;
+    opens com.example.trading_project to javafx.fxml,java.base;
     exports com.example.trading_project;
 }

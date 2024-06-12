@@ -62,6 +62,7 @@ public class ClientHandler implements Runnable{
                         } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
+                        break;
                     case "home page":
                         System.out.println("[SERVER] client wants data for home page");
                         while (true) {
@@ -70,16 +71,15 @@ public class ClientHandler implements Runnable{
                             objOutput.writeObject(Server.currencyHandler.TOMAN);
                             objOutput.writeObject(Server.currencyHandler.YEN);
                             objOutput.writeObject(Server.currencyHandler.GBP);
+                            objOutput.reset();
                             System.out.println("[SERVER] currencies sent");
-                            System.out.println(in.readLine());
                             try {
-                                Thread.sleep(2000);
+                                Thread.sleep(5000);
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
                         }
                 }
-
             }
             client.close();
         }

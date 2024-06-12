@@ -1,6 +1,7 @@
 package com.example.trading_project;
 
 import INFO.Currency;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -41,57 +42,44 @@ public class HomePageController implements Initializable {
     @FXML
     private TableColumn<Currency, Double> minValue;
 
-    public Currency usd, eur, toman, yen, gbp;
-
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle){
         currencyName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        currencyValue.setCellValueFactory(new PropertyValueFactory<>("currentPrice"));
-        maxValue.setCellValueFactory(new PropertyValueFactory<>("maxPrice"));
-        minValue.setCellValueFactory(new PropertyValueFactory<>("minPrice"));
-        changes.setCellValueFactory(new PropertyValueFactory<>("showChange"));
-        fillTable();
+        currencyValue.setCellValueFactory(new PropertyValueFactory<>("currentPriceStr"));
+        maxValue.setCellValueFactory(new PropertyValueFactory<>("maxPriceStr"));
+        minValue.setCellValueFactory(new PropertyValueFactory<>("minPriceStr"));
+        changes.setCellValueFactory(new PropertyValueFactory<>("changeStr"));
+        mainCode.socketOut.println("home page");
+        Thread myThread = new Thread(new MyThread());
+        myThread.start();
+        tab.setFixedCellSize(25);
+        tab.prefHeightProperty().bind(tab.fixedCellSizeProperty().multiply(Bindings.size(tab.getItems()).add(1.3)));
+        tab.minHeightProperty().bind(tab.prefHeightProperty());
+        tab.maxHeightProperty().bind(tab.prefHeightProperty());
     }
 
-    public void fillTable() {
-        try {
-//            mainCode.socketOut.println("home page");
-//            while (true) {
-//                usd = (Currency) mainCode.objIn.readObject();
-//                eur = (Currency) mainCode.objIn.readObject();
-//                toman = (Currency) mainCode.objIn.readObject();
-//                yen = (Currency) mainCode.objIn.readObject();
-//                gbp = (Currency) mainCode.objIn.readObject();
-//                ObservableList<Currency> currencies = FXCollections.observableArrayList();
-//                currencies.add(usd);
-//                currencies.add(eur);
-//                currencies.add(toman);
-//                currencies.add(yen);
-//                currencies.add(gbp);
-//                tab.setItems(currencies);
-//                mainCode.socketOut.println("hello");
-//            }
+    public class MyThread implements Runnable {
 
-            usd = new Currency("usd");
-            usd.setCurrentPrice(1.02);
-            eur = new Currency("eur");
-            eur.setCurrentPrice(2.03);
-            toman = new Currency("toman");
-            toman.setCurrentPrice(20.23);
-            yen = new Currency("yen");
-            yen.setCurrentPrice(12.023);
-            gbp = new Currency("gbp");
-            gbp.setCurrentPrice(0.2314);
-            ObservableList<Currency> currencies = FXCollections.observableArrayList();
-            currencies.add(usd);
-            currencies.add(eur);
-            currencies.add(toman);
-            currencies.add(yen);
-            currencies.add(gbp);
-            tab.setItems(currencies);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        public Currency usd, eur, toman, yen, gbp;
+
+        @Override
+        public void run() {
+            while (true){
+                try {
+                    tab.refresh();
+                    usd = (Currency) mainCode.objIn.readObject();
+                    eur = (Currency) mainCode.objIn.readObject();
+                    toman = (Currency) mainCode.objIn.readObject();
+                    yen = (Currency) mainCode.objIn.readObject();
+                    gbp = (Currency) mainCode.objIn.readObject();
+                    tab.getItems().setAll(usd,eur,toman,yen,gbp);
+                    tab.refresh();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
     }
 }
+

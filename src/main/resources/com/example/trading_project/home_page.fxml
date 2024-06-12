@@ -41,7 +41,7 @@
             <Font name="B Titr Bold" size="15.0" />
          </font>
       </Text>
-      <TableView fx:id="tab" layoutX="67.0" layoutY="139.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="441.0" prefWidth="825.0">
+      <TableView fx:id="tab" layoutX="65.0" layoutY="178.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="333.0" prefWidth="805.0">
         <columns>
           <TableColumn fx:id="currencyName" prefWidth="192.0" text="نام ارز" />
           <TableColumn fx:id="currencyValue" minWidth="0.0" prefWidth="154.0" text="قیمت" />

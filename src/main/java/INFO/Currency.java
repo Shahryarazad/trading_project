@@ -9,10 +9,13 @@ public class Currency implements Serializable {
     //fields
     public String name;
     public double currentPrice;
+    public String currentPriceStr;
     public double maxPrice = Double.MIN_VALUE;
+    public String maxPriceStr;
     public double minPrice = Double.MAX_VALUE;
-    public String showChange;
+    public String minPriceStr;
     public float change;
+    public String changeStr;
     public ArrayList<Double> prices = new ArrayList<>();
 
 
@@ -31,33 +34,40 @@ public class Currency implements Serializable {
         if (currentPrice != 0) {
             change = (float) (Math.round((newPrice / currentPrice) * 100.0) / 100.0);
             if (newPrice > currentPrice)
-                showChange = "+" + change + "%";
+                changeStr = "+" + change + "%";
             else if (newPrice < currentPrice)
-                showChange = "-" + change + "%";
+                changeStr = "-" + change + "%";
             else
-                showChange = "0.00%";
+                changeStr = "0.00%";
         }
         currentPrice = newPrice;
+        setStr();
         prices.add(currentPrice);
+    }
+
+    public void setStr() {
+        currentPriceStr = String.valueOf((float) (Math.round(currentPrice * 100.0) / 100.0));
+        maxPriceStr = String.valueOf((float) (Math.round(maxPrice * 100.0) / 100.0));
+        minPriceStr = String.valueOf((float) (Math.round(minPrice * 100.0) / 100.0));
     }
 
     public String getName() {
         return name;
     }
 
-    public double getCurrentPrice() {
-        return currentPrice;
+    public String getCurrentPriceStr() {
+        return currentPriceStr;
     }
 
-    public double getMaxPrice() {
-        return maxPrice;
+    public String getMaxPriceStr() {
+        return maxPriceStr;
     }
 
-    public double getMinPrice() {
-        return minPrice;
+    public String getMinPriceStr() {
+        return minPriceStr;
     }
 
-    public String getShowChange() {
-        return showChange;
+    public String getChangeStr() {
+        return changeStr;
     }
 }

@@ -5,12 +5,12 @@ import java.lang.Class.*;
 import java.security.Timestamp;
 import java.sql.*;
 
-public class CurrencyHandler implements Runnable, Serializable {
+public class CurrencyHandler implements Runnable{
 
     //fields
     Currency USD, EUR, TOMAN, YEN, GBP;
-    ResultSet resultSet;
-    Connection connection;
+    static ResultSet resultSet;
+    static Connection connection;
 
     public CurrencyHandler() {
         USD = new Currency("USD");
@@ -48,16 +48,18 @@ public class CurrencyHandler implements Runnable, Serializable {
 
 
 
+
     @Override
     public void run() {
         try {
+
             while (resultSet.next()) {
                 USD.setCurrentPrice(resultSet.getFloat(2));
                 EUR.setCurrentPrice(resultSet.getFloat(3));
                 TOMAN.setCurrentPrice(resultSet.getFloat(4));
                 YEN.setCurrentPrice(resultSet.getFloat(5));
                 GBP.setCurrentPrice(resultSet.getFloat(6));
-                Thread.sleep(2000);
+                Thread.sleep(5000);
             }
         } catch (Exception e) {
             e.printStackTrace();

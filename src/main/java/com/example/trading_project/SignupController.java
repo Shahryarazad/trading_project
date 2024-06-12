@@ -44,11 +44,16 @@ public class SignupController {
         if (userAccount != null) {
             mainCode.socketOut.println("sign up");
             mainCode.objOut.writeObject(userAccount);
-            if (mainCode.socketIn.readLine().equals("true")) {
+            mainCode.objOut.flush();
+            String s = mainCode.socketIn.readLine();
+            if (s.equals("true")) {
                 mainCode.account = userAccount;
 //                logIn(userAccount, anchorPane);
                 go_to_homePage(userAccount, anchorPane);
                 System.out.println("signed up successfully");
+            }
+            else if (s.equals("false")) {
+                emailerror.setText("this account does exit");
             }
         }
     }
@@ -81,6 +86,15 @@ public class SignupController {
 //    }
 
     public void Debug(ActionEvent event) throws IOException {
-        logIn(new account("a","1234567a","a","a","a","a"),anchorPane);
+        username.setText("a");
+        firstname.setText("a");
+
+        lastname.setText("a");
+
+        password.setText("1234567a");
+
+        password1.setText("1234567a");
+        email.setText("s@g.h");
+        phonenumber.setText("1");
     }
 }
