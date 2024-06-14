@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 
 public class HomePage2Controller implements Initializable {
 
+    Thread myThread;
+
     @FXML
     private AnchorPane anchorPane;
 
@@ -103,6 +105,7 @@ public class HomePage2Controller implements Initializable {
     String priority = "name";
     boolean swPrice = true, swChange = true, swMaxPrice = true, swMinPrice = true;
     boolean currentSw = true;
+    boolean stop = false;
 
     public Currency usd, eur, toman, yen, gbp;
     public Currency first, second, third, forth, fifth;
@@ -111,7 +114,7 @@ public class HomePage2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mainCode.socketOut.println("home page");
-        Thread myThread = new Thread(new MyThread());
+        myThread = new Thread(new MyThread());
         myThread.start();
     }
 
@@ -128,6 +131,11 @@ public class HomePage2Controller implements Initializable {
                     yen = (Currency) mainCode.objIn.readObject();
                     gbp = (Currency) mainCode.objIn.readObject();
                     setPriority(priority, currentSw);
+                    Thread.sleep(5000);
+                    if (!stop)
+                        mainCode.socketOut.println("true");
+                    else
+                        break;
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -170,27 +178,37 @@ public class HomePage2Controller implements Initializable {
 
     @FXML
     void onFirstClick(MouseEvent event) {
-
+        //go to currency page
+        mainCode.socketOut.println("false");
+        stop = true;
     }
 
     @FXML
     void onSecondClick(MouseEvent event) {
-
+        //go to currency page
+        mainCode.socketOut.println("false");
+        stop = true;
     }
 
     @FXML
     void onThirdClick(MouseEvent event) {
-
+        //go to currency page
+        mainCode.socketOut.println("false");
+        stop = true;
     }
 
     @FXML
     void onFourthClick(MouseEvent event) {
-
+        //go to currency page
+        mainCode.socketOut.println("false");
+        stop = true;
     }
 
     @FXML
     void onFifthClick(MouseEvent event) {
-
+        //go to currency page
+        mainCode.socketOut.println("false");
+        stop = true;
     }
 
     public void setPriority(String s, boolean sw) {

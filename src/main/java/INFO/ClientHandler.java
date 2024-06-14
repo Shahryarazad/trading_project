@@ -78,7 +78,10 @@ public class ClientHandler implements Runnable{
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
+                            if (in.readLine().equals("false"))
+                                break;
                         }
+
                 }
             }
             client.close();
