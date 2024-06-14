@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trading_project.HomePage2Controller">
+   <children>
+      <AnchorPane fx:id="anchorPane" prefHeight="651.0" prefWidth="946.0">
+         <children>
+            <Line endX="97.0" layoutX="812.0" layoutY="76.0" startX="-785.0" />
+            <ImageView fx:id="imageIcon" fitHeight="52.0" fitWidth="57.0" layoutX="863.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/imageIcon.png" />
+               </image>
+            </ImageView>
+            <Text fill="#4b0b66" layoutX="758.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="صرافی آنلاین ">
+               <font>
+                  <Font name="B Titr Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="535.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="پروفایل" wrappingWidth="67.0">
+               <font>
+                  <Font name="B Titr Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="412.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت لحظه ای " wrappingWidth="111.2412109375">
+               <font>
+                  <Font name="B Titr Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="333.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="خدمات" wrappingWidth="57.0">
+               <font>
+                  <Font name="B Titr Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="256.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="راهنما" wrappingWidth="41.0">
+               <font>
+                  <Font name="B Titr Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="10.0" layoutY="10.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="95.0" />
+            <Line endX="333.0" layoutX="468.0" layoutY="223.0" startX="-314.0" />
+            <Line endX="333.0" layoutX="468.0" layoutY="294.0" startX="-314.0" />
+            <Line endX="333.0" layoutX="468.0" layoutY="430.0" startX="-314.0" />
+            <Line endX="333.0" layoutX="468.0" layoutY="358.0" startX="-314.0" />
+            <Line endX="333.0" layoutX="468.0" layoutY="498.0" startX="-314.0" />
+            <Text layoutX="702.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="نام ارز" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text layoutX="560.0" layoutY="198.0" onMouseClicked="#onPriceClick" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت " textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text layoutX="422.0" layoutY="198.0" onMouseClicked="#onChangeClick" strokeType="OUTSIDE" strokeWidth="0.0" text="تغییرات" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text layoutX="287.0" layoutY="198.0" onMouseClicked="#onMaxPriceClick" strokeType="OUTSIDE" strokeWidth="0.0" text="بیشترین قیمت" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text layoutX="144.0" layoutY="198.0" onMouseClicked="#onMinPriceClick" strokeType="OUTSIDE" strokeWidth="0.0" text="کمترین قیمت" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text11" layoutX="701.0" layoutY="266.0" onMouseClicked="#onFirstClick" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text12" layoutX="559.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text13" layoutX="421.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text14" layoutX="286.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text15" layoutX="143.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text21" layoutX="701.0" layoutY="330.0" onMouseClicked="#onSecondClick" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text22" layoutX="559.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text23" layoutX="421.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text24" layoutX="286.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text25" layoutX="143.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text31" layoutX="699.0" layoutY="399.0" onMouseClicked="#onThirdClick" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text32" layoutX="557.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text33" layoutX="419.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text34" layoutX="284.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text35" layoutX="141.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text41" layoutX="701.0" layoutY="470.0" onMouseClicked="#onFourthClick" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text42" layoutX="559.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text43" layoutX="421.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text44" layoutX="286.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text45" layoutX="143.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text51" layoutX="701.0" layoutY="537.0" onMouseClicked="#onFifthClick" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text52" layoutX="559.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text53" layoutX="421.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text54" layoutX="286.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+            <Text fx:id="text55" layoutX="143.0" layoutY="536.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.2412109375" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

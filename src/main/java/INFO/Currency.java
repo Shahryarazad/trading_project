@@ -29,7 +29,7 @@ public class Currency implements Serializable {
     public void setCurrentPrice(double newPrice) {
         if (newPrice > maxPrice)
             maxPrice = newPrice;
-        else if (newPrice < minPrice)
+        if (newPrice < minPrice)
             minPrice = newPrice;
         if (currentPrice != 0) {
             change = (float) (Math.round((newPrice / currentPrice) * 100.0) / 100.0);

@@ -59,7 +59,7 @@ public class SignupController {
     }
 
     protected void go_to_homePage(account account, AnchorPane anchorPane) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home_page.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("home_page2.fxml")));
         Scene scene = new Scene(root);
         mainCode.mainStage.setScene(scene);
         mainCode.mainStage.setWidth(950);
