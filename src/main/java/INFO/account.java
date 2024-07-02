@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class account implements Serializable {
 
-    public static ArrayList<account> accounts = new ArrayList<>();
+    protected static ArrayList<account> accounts = new ArrayList<>();
 
     public account(String username, String password, String firstname, String lastname, String email, String phoneNumber){
         this.password = password;
@@ -23,7 +23,7 @@ public class account implements Serializable {
 
      public enum tier{
         Normal,ADMIN,Demo
-    }
+     }
     tier tier;
     public String username;
     public String password;
@@ -32,6 +32,9 @@ public class account implements Serializable {
     public String email;
     public String phoneNumber;
     public Image profilePic;
+    public ArrayList<Trade> trades = new ArrayList<>();
+    public ArrayList<Request> buyRequest = new ArrayList<>();
+    public ArrayList<Request> sellRequest = new ArrayList<>();
 
     //methods
     public static boolean signUp(account userAccount) {

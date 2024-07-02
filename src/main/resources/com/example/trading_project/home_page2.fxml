@@ -27,7 +27,7 @@
                   <Font name="B Titr Bold" size="15.0" />
                </font>
             </Text>
-            <Text layoutX="412.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="قیمت لحظه ای " wrappingWidth="111.2412109375">
+            <Text layoutX="397.0" layoutY="43.0" onMouseClicked="#onExchangeClick" strokeType="OUTSIDE" strokeWidth="0.0" text="صفحه تبادل" textAlignment="CENTER" wrappingWidth="111.2412109375">
                <font>
                   <Font name="B Titr Bold" size="15.0" />
                </font>

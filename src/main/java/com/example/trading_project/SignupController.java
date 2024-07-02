@@ -56,6 +56,7 @@ public class SignupController {
                 emailerror.setText("this account does exit");
             }
         }
+
     }
 
     protected void go_to_homePage(account account, AnchorPane anchorPane) throws IOException {

@@ -15,6 +15,7 @@ public class ClientHandler implements Runnable{
     private PrintWriter out;
     private ObjectInputStream objInput;
     private ObjectOutputStream objOutput;
+    private account a;
 
 
     public ClientHandler(Socket clientSocket) throws IOException {
@@ -38,7 +39,7 @@ public class ClientHandler implements Runnable{
                     case "sign up":
                         System.out.println("[SERVER] a client wants to sign up");
                         try {
-                            account a = (account) objInput.readObject();
+                            a = (account) objInput.readObject();
                             System.out.println("[SERVER] account received");
                             boolean checkSignUp = account.signUp(a);
                             out.println(checkSignUp);
@@ -73,15 +74,48 @@ public class ClientHandler implements Runnable{
                             objOutput.writeObject(Server.currencyHandler.GBP);
                             objOutput.reset();
                             System.out.println("[SERVER] currencies sent");
+                            if (in.readLine().equals("false"))
+                                break;
                             try {
                                 Thread.sleep(5000);
                             } catch (InterruptedException e) {
                                 throw new RuntimeException(e);
                             }
+                        }
+                        break;
+                    case "currency":
+                        String name = in.readLine();
+                        Currency currency = findCurrency(name);
+                        while (true) {
+                            objOutput.writeObject(currency);
+                            objOutput.reset();
                             if (in.readLine().equals("false"))
                                 break;
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
-
+                        break;
+                    case "exchange":
+                        while (true) {
+                            objOutput.writeObject(a);
+                            objOutput.writeObject(Server.currencyHandler.USD);
+                            objOutput.writeObject(Server.currencyHandler.EUR);
+                            objOutput.writeObject(Server.currencyHandler.TOMAN);
+                            objOutput.writeObject(Server.currencyHandler.YEN);
+                            objOutput.writeObject(Server.currencyHandler.GBP);
+                            objOutput.reset();
+                            if (in.readLine().equals("false"))
+                                break;
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        break;
                 }
             }
             client.close();
@@ -89,5 +123,21 @@ public class ClientHandler implements Runnable{
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Currency findCurrency(String name) {
+        switch (name) {
+            case "USD":
+                return Server.currencyHandler.USD;
+            case "EUR":
+                return Server.currencyHandler.EUR;
+            case "TOMAN":
+                return Server.currencyHandler.TOMAN;
+            case "YEN":
+                return Server.currencyHandler.YEN;
+            case "GBP":
+                return Server.currencyHandler.GBP;
+        }
+        return null;
     }
 }

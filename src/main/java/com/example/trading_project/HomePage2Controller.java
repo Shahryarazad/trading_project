@@ -2,16 +2,22 @@ package com.example.trading_project;
 
 import INFO.Currency;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomePage2Controller implements Initializable {
@@ -132,7 +138,7 @@ public class HomePage2Controller implements Initializable {
                     gbp = (Currency) mainCode.objIn.readObject();
                     setPriority(priority, currentSw);
                     Thread.sleep(5000);
-                    if (!stop)
+                    if (stop == false)
                         mainCode.socketOut.println("true");
                     else
                         break;
@@ -177,9 +183,29 @@ public class HomePage2Controller implements Initializable {
     }
 
     @FXML
-    void onFirstClick(MouseEvent event) {
+    void onExchangeClick(MouseEvent event) {
+        mainCode.socketOut.println("false");
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exchange-page.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        mainCode.mainStage.setScene(scene);
+        mainCode.mainStage.setWidth(555);
+        mainCode.mainStage.setHeight(633);
+        mainCode.mainStage.show();
+        stop = true;
+    }
+
+    @FXML
+    void onFirstClick(MouseEvent event) throws InterruptedException {
         //go to currency page
         mainCode.socketOut.println("false");
+        mainCode.socketOut.println("currency");
+        mainCode.socketOut.println(first.name);
+        changeScene();
         stop = true;
     }
 
@@ -187,6 +213,9 @@ public class HomePage2Controller implements Initializable {
     void onSecondClick(MouseEvent event) {
         //go to currency page
         mainCode.socketOut.println("false");
+        mainCode.socketOut.println("currency");
+        mainCode.socketOut.println(second.name);
+        changeScene();
         stop = true;
     }
 
@@ -194,6 +223,9 @@ public class HomePage2Controller implements Initializable {
     void onThirdClick(MouseEvent event) {
         //go to currency page
         mainCode.socketOut.println("false");
+        mainCode.socketOut.println("currency");
+        mainCode.socketOut.println(third.name);
+        changeScene();
         stop = true;
     }
 
@@ -201,6 +233,9 @@ public class HomePage2Controller implements Initializable {
     void onFourthClick(MouseEvent event) {
         //go to currency page
         mainCode.socketOut.println("false");
+        mainCode.socketOut.println("currency");
+        mainCode.socketOut.println(forth.name);
+        changeScene();
         stop = true;
     }
 
@@ -208,6 +243,9 @@ public class HomePage2Controller implements Initializable {
     void onFifthClick(MouseEvent event) {
         //go to currency page
         mainCode.socketOut.println("false");
+        mainCode.socketOut.println("currency");
+        mainCode.socketOut.println(fifth.name);
+        changeScene();
         stop = true;
     }
 
@@ -297,5 +335,19 @@ public class HomePage2Controller implements Initializable {
         Currency temp = currencies[i];
         currencies[i] = currencies[j];
         currencies[j] = temp;
+    }
+
+    private void changeScene() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Currency-page.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        mainCode.mainStage.setScene(scene);
+        mainCode.mainStage.setWidth(883);
+        mainCode.mainStage.setHeight(560);
+        mainCode.mainStage.show();
     }
 }

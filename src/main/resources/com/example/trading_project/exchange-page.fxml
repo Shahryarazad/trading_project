@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="622.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.trading_project.ExchangePageController">
+   <children>
+      <Text fill="#398348" layoutX="52.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EXCHANGE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Text>
+      <TableView layoutX="279.0" layoutY="16.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <TableView layoutX="279.0" layoutY="306.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <ToggleButton fx:id="buyButton" layoutX="52.0" layoutY="178.0" mnemonicParsing="false" onAction="#onToggleButton" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: #398348;" text="Buy" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="toggleButtons" />
+         </toggleGroup>
+      </ToggleButton>
+      <ToggleButton fx:id="sellButton" layoutX="154.0" layoutY="178.0" mnemonicParsing="false" onAction="#onToggleButton" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: White;" text="Sell" textFill="#398348" toggleGroup="$toggleButtons">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </ToggleButton>
+      <Button fx:id="decisionButton" layoutX="87.0" layoutY="488.0" mnemonicParsing="false" onAction="#onDecisionClick" prefHeight="31.0" prefWidth="108.0" style="-fx-background-radius: 35; -fx-background-color: #398348;" text="Buy" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="choiceBox" layoutX="65.0" layoutY="269.0" prefWidth="150.0" style="-fx-background-color: White;" />
+      <Text layoutX="67.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choose the currency" wrappingWidth="120.333984375" />
+      <Spinner fx:id="spinner" editable="true" layoutX="66.0" layoutY="339.0" prefHeight="25.0" prefWidth="150.0" />
+      <Text layoutX="67.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choose the amount" wrappingWidth="120.333984375" />
+      <Slider fx:id="slide" layoutX="66.0" layoutY="414.0" max="0.0" prefHeight="17.0" prefWidth="150.0" showTickLabels="true" />
+      <Text layoutX="67.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choose the value" wrappingWidth="120.333984375" />
+      <Text fx:id="currenyText" layoutX="98.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="86.13671875" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#418c4999" height="394.0" layoutX="27.0" layoutY="151.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="228.0" />
+      <Button fx:id="backButton" layoutX="27.0" layoutY="568.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="31.0" prefWidth="48.0" style="-fx-background-color: Black; -fx-background-radius: 20;" text="back" textAlignment="CENTER" textFill="#fffbfb">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

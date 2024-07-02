@@ -8,7 +8,7 @@ import java.sql.*;
 public class CurrencyHandler implements Runnable{
 
     //fields
-    Currency USD, EUR, TOMAN, YEN, GBP;
+    public static Currency USD, EUR, TOMAN, YEN, GBP;
     static ResultSet resultSet;
     static Connection connection;
 
