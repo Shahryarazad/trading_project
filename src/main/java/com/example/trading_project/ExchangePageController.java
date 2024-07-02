@@ -44,6 +44,15 @@ public class ExchangePageController  implements Initializable {
     @FXML
     private Text currenyText;
 
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private TableView<?> buyTable;
+
+    @FXML
+    private TableView<?> sellTable;
+
 
     String decision;
     double price;
@@ -62,7 +71,6 @@ public class ExchangePageController  implements Initializable {
             buyButton.setTextFill(Color.WHITE);
             buyButton.setStyle("-fx-background-color:  #398348");
             decision = "buy";
-            decisionButton.setText(decision);
         }
         else if (event.getSource() == sellButton) {
             sellButton.setStyle("-fx-background-color:  #398348");
@@ -70,12 +78,16 @@ public class ExchangePageController  implements Initializable {
             buyButton.setTextFill(Color.valueOf("#398348"));
             buyButton.setStyle("-fx-background-color:  White");
             decision = "sell";
-            decisionButton.setText(decision);
         }
     }
 
     @FXML
     void onDecisionClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onBackButton(ActionEvent event) {
 
     }
 

@@ -20,13 +20,13 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
-      <TableView layoutX="279.0" layoutY="16.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
+      <TableView fx:id="buyTable" layoutX="279.0" layoutY="16.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <TableView layoutX="279.0" layoutY="306.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
+      <TableView fx:id="sellTable" layoutX="279.0" layoutY="306.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />

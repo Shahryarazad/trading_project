@@ -194,7 +194,7 @@ public class HomePage2Controller implements Initializable {
         Scene scene = new Scene(root);
         mainCode.mainStage.setScene(scene);
         mainCode.mainStage.setWidth(555);
-        mainCode.mainStage.setHeight(633);
+        mainCode.mainStage.setHeight(646);
         mainCode.mainStage.show();
         stop = true;
     }
@@ -347,7 +347,7 @@ public class HomePage2Controller implements Initializable {
         Scene scene = new Scene(root);
         mainCode.mainStage.setScene(scene);
         mainCode.mainStage.setWidth(883);
-        mainCode.mainStage.setHeight(560);
+        mainCode.mainStage.setHeight(570);
         mainCode.mainStage.show();
     }
 }

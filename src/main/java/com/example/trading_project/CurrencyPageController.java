@@ -1,6 +1,7 @@
 package com.example.trading_project;
 
 import INFO.Currency;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
@@ -8,6 +9,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.TableView;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +49,9 @@ public class CurrencyPageController implements Initializable {
 
     @FXML
     private TableView<?> table3;
+
+    @FXML
+    private Button backButton;
 
     Currency currency;
     boolean stop = false;
@@ -100,6 +105,11 @@ public class CurrencyPageController implements Initializable {
         if (count > 8)
             series.getData().remove(0, series.getData().size() - 8);
         series.getData().add(new XYChart.Data(String.valueOf(count), currency.currentPrice));
+    }
+
+    @FXML
+    void onBackButton(ActionEvent event) {
+
     }
 
 }
