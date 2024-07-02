@@ -21,15 +21,10 @@
          </font>
       </Text>
       <TableView fx:id="buyTable" layoutX="279.0" layoutY="16.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <TableView fx:id="sellTable" layoutX="279.0" layoutY="306.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn fx:id="totalBuy" prefWidth="81.0" text="Column X" />
+            <TableColumn fx:id="buyVolume" prefWidth="79.0" text="Column X" />
+            <TableColumn fx:id="buyPrice" text="Column X" />
          </columns>
       </TableView>
       <ToggleButton fx:id="buyButton" layoutX="52.0" layoutY="178.0" mnemonicParsing="false" onAction="#onToggleButton" prefHeight="31.0" prefWidth="75.0" style="-fx-background-color: #398348;" text="Buy" textFill="WHITE">
@@ -45,7 +40,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </ToggleButton>
-      <Button fx:id="decisionButton" layoutX="87.0" layoutY="488.0" mnemonicParsing="false" onAction="#onDecisionClick" prefHeight="31.0" prefWidth="108.0" style="-fx-background-radius: 35; -fx-background-color: #398348;" text="Buy" textFill="WHITE">
+      <Button fx:id="decisionButton" layoutX="87.0" layoutY="488.0" mnemonicParsing="false" onAction="#onDecisionClick" prefHeight="31.0" prefWidth="108.0" style="-fx-background-radius: 35; -fx-background-color: #398348;" text="set Request" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -57,11 +52,19 @@
       <Slider fx:id="slide" layoutX="66.0" layoutY="414.0" max="0.0" prefHeight="17.0" prefWidth="150.0" showTickLabels="true" />
       <Text layoutX="67.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="choose the value" wrappingWidth="120.333984375" />
       <Text fx:id="currenyText" layoutX="98.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="86.13671875" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#418c4999" height="394.0" layoutX="27.0" layoutY="151.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="228.0" />
       <Button fx:id="backButton" layoutX="27.0" layoutY="568.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="31.0" prefWidth="48.0" style="-fx-background-color: Black; -fx-background-radius: 20;" text="back" textAlignment="CENTER" textFill="#fffbfb">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
+      <Text fx:id="errorText" fill="RED" layoutX="61.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="160.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#418c4999" height="412.0" layoutX="27.0" layoutY="146.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="228.0" />
+      <TableView fx:id="sellTable" layoutX="279.0" layoutY="309.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
+         <columns>
+            <TableColumn fx:id="totalSell" prefWidth="81.0" text="Column X" />
+            <TableColumn fx:id="sellVolume" prefWidth="79.0" text="Column X" />
+            <TableColumn fx:id="sellPrice" text="Column X" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>

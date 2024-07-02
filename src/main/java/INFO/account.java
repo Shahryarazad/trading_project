@@ -18,13 +18,17 @@ public class account implements Serializable {
         this.email = email;
         this.phoneNumber = phoneNumber;
 //        this.profilePic = profilePic;
-        tier = tier.Normal;
+        tier = Tier.Normal;
     }
 
-     public enum tier{
+    public account(String tier) {
+        setTier(tier);
+    }
+
+     public enum Tier{
         Normal,ADMIN,Demo
      }
-    tier tier;
+    Tier tier;
     public String username;
     public String password;
     public String firstName;
@@ -35,6 +39,7 @@ public class account implements Serializable {
     public ArrayList<Trade> trades = new ArrayList<>();
     public ArrayList<Request> buyRequest = new ArrayList<>();
     public ArrayList<Request> sellRequest = new ArrayList<>();
+    public Wallet wallet = new Wallet();
 
     //methods
     public static boolean signUp(account userAccount) {
@@ -52,5 +57,14 @@ public class account implements Serializable {
                 return a;
         }
         return null;
+    }
+
+    private void setTier(String t) {
+        if (t.equals("normal"))
+            tier = Tier.Normal;
+        else if (t.equals("demo"))
+            tier = Tier.Demo;
+        else if (t.equals("admin"))
+            tier = Tier.ADMIN;
     }
 }

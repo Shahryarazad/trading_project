@@ -1,5 +1,6 @@
 package INFO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -8,17 +9,17 @@ import java.util.Comparator;
 import static java.util.Comparator.comparing;
 import static java.util.Comparator.naturalOrder;
 
-public class Request implements Comparable{
+public class Request implements Comparable, Serializable {
 
-    protected static ArrayList<Request> buyRequests = new ArrayList<>();
-    protected static ArrayList<Request> sellRequests = new ArrayList<>();
 
     protected account account;
     protected Currency currency;
+    protected double price;
     protected double volume;
-    protected Type type;
+    protected double totalAmount;
+    public Type type;
 
-    public static Comparator<Request> COMPARE_BY_VOLUME = new Comparator<Request>() {
+    public static Comparator<Request> COMPARE_BY_PRICE = new Comparator<Request>() {
         public int compare(Request one, Request other) {
             return one.compareTo(other);
         }
@@ -27,38 +28,26 @@ public class Request implements Comparable{
     @Override
     public int compareTo(Object o) {
         Request request = (Request) o;
-        if (this.volume > request.volume)
+        if (this.price > request.price)
             return 1;
-        else if (this.volume < request.volume)
+        else if (this.price < request.price)
             return -1;
         else return 0;
     }
 
-    protected enum Type{
+    public enum Type{
         Buy, Sell;
     }
 
-    public Request(account account, Currency currency, double volume, int type) {
+    public Request(account account, Currency currency, double volume, double price, int type) {
         this.account = account;
         this.currency = currency;
         this.volume = volume;
+        this.price = price;
+        totalAmount = price*volume;
         setType(type);
-        saveRequest();
     }
 
-    private void saveRequest() {
-        if (type == Type.Buy) {
-            buyRequests.add(this);
-            Collections.sort(buyRequests, Request.COMPARE_BY_VOLUME);
-            Collections.reverse(buyRequests);
-            account.buyRequest.add(this);
-        }
-        else if (type == Type.Sell) {
-            sellRequests.add(this);
-            Collections.sort(sellRequests, Request.COMPARE_BY_VOLUME);
-            account.sellRequest.add(this);
-        }
-    }
 
     private void setType(int i) {
         if (i == 1)
@@ -69,6 +58,14 @@ public class Request implements Comparable{
 
     public double getVolume() {
         return volume;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getTotalAmount() {
+        return totalAmount;
     }
 
     public account getAccount1() {

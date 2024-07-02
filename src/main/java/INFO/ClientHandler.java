@@ -6,6 +6,8 @@ import javafx.scene.text.Text;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import static INFO.accountBank.*;
 
 public class ClientHandler implements Runnable{
@@ -52,10 +54,10 @@ public class ClientHandler implements Runnable{
                         System.out.println("[SERVER] a client wants to log in");
                         try {
                             String[] strings = (String[]) objInput.readObject();
-                            account logInAccount = account.logIn(strings[0], strings[1]);
-                            if (logInAccount != null) {
+                            a = account.logIn(strings[0], strings[1]);
+                            if (a != null) {
                                 out.println("true");
-                                objOutput.writeObject(logInAccount);
+                                objOutput.writeObject(a);
                                 System.out.println("[SERVER] client logged in successfully");
                             }
                             else
@@ -100,6 +102,8 @@ public class ClientHandler implements Runnable{
                         break;
                     case "exchange":
                         while (true) {
+                            objOutput.writeObject(Server.buyRequests);
+                            objOutput.writeObject(Server.sellRequests);
                             objOutput.writeObject(a);
                             objOutput.writeObject(Server.currencyHandler.USD);
                             objOutput.writeObject(Server.currencyHandler.EUR);
@@ -107,6 +111,11 @@ public class ClientHandler implements Runnable{
                             objOutput.writeObject(Server.currencyHandler.YEN);
                             objOutput.writeObject(Server.currencyHandler.GBP);
                             objOutput.reset();
+                            ArrayList<Request> newBuy = (ArrayList<Request>) objInput.readObject();
+                            ArrayList<Request> newSell = (ArrayList<Request>) objInput.readObject();
+                            addToBuy(newBuy);
+                            addToSell(newSell);
+                            System.out.println(Server.sellRequests);
                             if (in.readLine().equals("false"))
                                 break;
                             try {
@@ -122,6 +131,8 @@ public class ClientHandler implements Runnable{
         }
         catch (IOException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -139,5 +150,15 @@ public class ClientHandler implements Runnable{
                 return Server.currencyHandler.GBP;
         }
         return null;
+    }
+
+    private void addToBuy(ArrayList<Request> buyList) {
+        for (Request r : buyList)
+            Server.buyRequests.add(r);
+    }
+
+    private void addToSell(ArrayList<Request> buyList) {
+        for (Request r : buyList)
+            Server.sellRequests.add(r);
     }
 }

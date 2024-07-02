@@ -1,6 +1,8 @@
 package INFO;
 
-public class Wallet {
+import java.io.Serializable;
+
+public class Wallet implements Serializable {
 
     public account account;
     private double amountOfUSD;
@@ -16,22 +18,6 @@ public class Wallet {
         amountOfYEN = 100_000;
         amountOfGBP = 1000;
     }
-
-//    private Currency findCurrency(String name) {
-//        switch (name) {
-//            case "USD":
-//                return Server.currencyHandler.USD;
-//            case "EUR":
-//                return Server.currencyHandler.EUR;
-//            case "TOMAN":
-//                return Server.currencyHandler.TOMAN;
-//            case "YEN":
-//                return Server.currencyHandler.YEN;
-//            case "GBP":
-//                return Server.currencyHandler.GBP;
-//        }
-//        return null;
-//    }
 
     public double getAmountOfUSD() {
         return amountOfUSD;
@@ -51,5 +37,21 @@ public class Wallet {
 
     public double getAmountOfGBP() {
         return amountOfGBP;
+    }
+
+    public double getProperty(String currencyName) {
+        switch (currencyName) {
+            case "USD":
+                return amountOfUSD;
+            case "EUR":
+                return amountOfEUR;
+            case "TOMAN":
+                return amountOfTOMAN;
+            case "YEN":
+                return amountOfYEN;
+            case "GBP":
+                return amountOfGBP;
+        }
+        return 0.0;
     }
 }

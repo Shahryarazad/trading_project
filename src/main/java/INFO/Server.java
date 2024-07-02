@@ -13,6 +13,10 @@ public class Server {
     static protected ArrayList<Thread> clients = new ArrayList<>();
     static CurrencyHandler currencyHandler;
     static Thread currencyThread;
+    public static account admin = new account("admin");
+    public static ArrayList<Request> buyRequests = new ArrayList<>();
+    public static ArrayList<Request> sellRequests = new ArrayList<>();
+
 
     public static void main(String[] args) throws IOException {
         currencyHandler = new CurrencyHandler();
