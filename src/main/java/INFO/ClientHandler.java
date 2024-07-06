@@ -32,10 +32,8 @@ public class ClientHandler implements Runnable{
     public void run() {
         try {
             String text;
-            while (true) {
+            outerLoop:while (true){
                 text = in.readLine();
-                if (text.equals("quit"))
-                    break;
 
                 switch (text) {
                     case "sign up":
@@ -49,7 +47,7 @@ public class ClientHandler implements Runnable{
                         } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
-                        break;
+                        break outerLoop;
                     case "login":
                         System.out.println("[SERVER] a client wants to log in");
                         try {
@@ -59,81 +57,45 @@ public class ClientHandler implements Runnable{
                                 out.println("true");
                                 objOutput.writeObject(a);
                                 System.out.println("[SERVER] client logged in successfully");
-                            }
-                            else
+                            } else
                                 out.println("false");
                         } catch (ClassNotFoundException e) {
                             throw new RuntimeException(e);
                         }
-                        break;
-                    case "home page":
-                        System.out.println("[SERVER] client wants data for home page");
-                        while (true) {
-                            objOutput.writeObject(Server.currencyHandler.USD);
-                            objOutput.writeObject(Server.currencyHandler.EUR);
-                            objOutput.writeObject(Server.currencyHandler.TOMAN);
-                            objOutput.writeObject(Server.currencyHandler.YEN);
-                            objOutput.writeObject(Server.currencyHandler.GBP);
-                            objOutput.reset();
-                            System.out.println("[SERVER] currencies sent");
-                            if (in.readLine().equals("false"))
-                                break;
-                            try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                        break;
-                    case "currency":
-                        String name = in.readLine();
-                        Currency currency = findCurrency(name);
-                        while (true) {
-                            objOutput.writeObject(currency);
-                            objOutput.reset();
-                            if (in.readLine().equals("false"))
-                                break;
-                            try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                        break;
-                    case "exchange":
-                        while (true) {
-                            objOutput.writeObject(Server.buyRequests);
-                            objOutput.writeObject(Server.sellRequests);
-                            objOutput.writeObject(a);
-                            objOutput.writeObject(Server.currencyHandler.USD);
-                            objOutput.writeObject(Server.currencyHandler.EUR);
-                            objOutput.writeObject(Server.currencyHandler.TOMAN);
-                            objOutput.writeObject(Server.currencyHandler.YEN);
-                            objOutput.writeObject(Server.currencyHandler.GBP);
-                            objOutput.reset();
-                            ArrayList<Request> newBuy = (ArrayList<Request>) objInput.readObject();
-                            ArrayList<Request> newSell = (ArrayList<Request>) objInput.readObject();
-                            addToBuy(newBuy);
-                            addToSell(newSell);
-                            System.out.println(Server.sellRequests);
-                            if (in.readLine().equals("false"))
-                                break;
-                            try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
-                        break;
+                        break outerLoop;
                 }
             }
-            client.close();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
-        catch (IOException e) {
-            e.printStackTrace();
+
+        try {
+            while (true) {
+                objOutput.writeObject(Server.currencyHandler.USD);
+                objOutput.writeObject(Server.currencyHandler.EUR);
+                objOutput.writeObject(Server.currencyHandler.TOMAN);
+                objOutput.writeObject(Server.currencyHandler.YEN);
+                objOutput.writeObject(Server.currencyHandler.GBP);
+                objOutput.writeObject(Server.buyRequests);
+                objOutput.writeObject(Server.sellRequests);
+                objOutput.writeObject(a);
+                objOutput.reset();
+                System.out.println("[SERVER] info sent");
+                Thread.sleep(5000);
+                a = (account) objInput.readObject();
+                ArrayList<Request> newBuy = (ArrayList<Request>) objInput.readObject();
+                ArrayList<Request> newSell = (ArrayList<Request>) objInput.readObject();
+                addToBuy(newBuy);
+                addToSell(newSell);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     private Currency findCurrency(String name) {

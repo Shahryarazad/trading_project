@@ -6,17 +6,24 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 //import java.util.Currency;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ExchangePageController  implements Initializable {
@@ -83,6 +90,7 @@ public class ExchangePageController  implements Initializable {
     Currency currency;
     account a;
     boolean stop = false;
+    String newtPage;
     public ArrayList<Request> buyRequests = new ArrayList<>();
     public ArrayList<Request> sellRequests = new ArrayList<>();
     public ArrayList<Request> newBuyRequest = new ArrayList<>();
@@ -113,14 +121,13 @@ public class ExchangePageController  implements Initializable {
         if (decision.equals("buy")) {
             Request request = new Request(a, currency, spinner.getValue(), price, 1);
             saveRequest(request);
-            a.buyRequest.add(request);
             errorText.setText("");
             updateBuyTable();
         }
         else if (decision.equals("sell") && property >= (spinner.getValue()*price)) {
             Request request = new Request(a, currency, spinner.getValue(), price, 0);
             saveRequest(request);
-            a.sellRequest.add(request);
+            a.wallet.payment(currencyStr, request.getTotalAmount());
             errorText.setText("");
             updateSellTable();
         }
@@ -133,26 +140,29 @@ public class ExchangePageController  implements Initializable {
         if (request.type == Request.Type.Buy) {
 //            buyRequests.add(request);
             newBuyRequest.add(request);
+            a.buyRequest.add(request);
             Collections.sort(buyRequests, Request.COMPARE_BY_PRICE);
             Collections.reverse(buyRequests);
-            a.buyRequest.add(request);
         }
         else if (request.type == Request.Type.Sell) {
 //            sellRequests.add(request);
             newSellRequest.add(request);
-            Collections.sort(sellRequests, Request.COMPARE_BY_PRICE);
             a.sellRequest.add(request);
+            Collections.sort(sellRequests, Request.COMPARE_BY_PRICE);
         }
     }
 
     @FXML
     void onBackButton(ActionEvent event) {
+        stop = true;
 
+        changeScene("home_page2.fxml");
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Thread myThread = new Thread(new MyThread());
+        myThread.setPriority(Thread.MAX_PRIORITY);
         myThread.start();
         findCurrency();
         currenyText.setText("0.0");
@@ -227,13 +237,15 @@ public class ExchangePageController  implements Initializable {
 
     private synchronized void updateBuyTable() {
         buyTable.refresh();
-        buyTable.getItems().setAll(filterBuyRequests());
+        ArrayList<Request> array = filterBuyRequests();
+        buyTable.getItems().setAll(array);
         buyTable.refresh();
     }
 
     private synchronized void updateSellTable() {
         sellTable.refresh();
-        sellTable.getItems().setAll(filterSellRequests());
+        ArrayList<Request> array = filterSellRequests();
+        sellTable.getItems().setAll(array);
         sellTable.refresh();
     }
 
@@ -267,34 +279,46 @@ public class ExchangePageController  implements Initializable {
 
         @Override
         public void run() {
-            mainCode.socketOut.println("exchange");
             while (true){
                 try {
-                    buyRequests = (ArrayList<Request>) mainCode.objIn.readObject();
-                    sellRequests = (ArrayList<Request>) mainCode.objIn.readObject();
-                    a = (account) mainCode.objIn.readObject();
-                    usd = (Currency) mainCode.objIn.readObject();
-                    eur = (Currency) mainCode.objIn.readObject();
-                    toman = (Currency) mainCode.objIn.readObject();
-                    yen = (Currency) mainCode.objIn.readObject();
-                    gbp = (Currency) mainCode.objIn.readObject();
+                    usd = mainCode.usd;
+                    eur = mainCode.eur;
+                    toman = mainCode.toman;
+                    yen = mainCode.yen;
+                    gbp = mainCode.gbp;
+                    buyRequests = mainCode.buyRequests;
+                    sellRequests = mainCode.sellRequests;
+                    a = mainCode.account;
                     updateBuyTable();
                     updateSellTable();
-                    mainCode.objOut.writeObject(newBuyRequest);
-                    mainCode.objOut.writeObject(newSellRequest);
+                    mainCode.newBuys = newBuyRequest;
+                    mainCode.newSells = newSellRequest;
                     newBuyRequest = new ArrayList<>();
                     newSellRequest = new ArrayList<>();
-                    if (!stop)
-                        mainCode.socketOut.println("true");
-                    else
-                        break;
                     Thread.sleep(5000);
+                    mainCode.account = a;
+                    if (stop)
+                        break;
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         }
 
+    }
+
+    public void changeScene(String path) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        mainCode.mainStage.setScene(scene);
+        mainCode.mainStage.setWidth(950);
+        mainCode.mainStage.setHeight(651);
+        mainCode.mainStage.show();
     }
 
 

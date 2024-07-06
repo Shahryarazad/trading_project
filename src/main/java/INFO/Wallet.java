@@ -54,4 +54,19 @@ public class Wallet implements Serializable {
         }
         return 0.0;
     }
+
+    public void payment(String currencyName, double total) {
+        switch (currencyName) {
+            case "USD":
+                amountOfUSD -= total;
+            case "EUR":
+                amountOfEUR -= total;
+            case "TOMAN":
+                amountOfTOMAN -= total;
+            case "YEN":
+                amountOfYEN -= total;
+            case "GBP":
+                amountOfGBP -= total;
+        }
+    }
 }

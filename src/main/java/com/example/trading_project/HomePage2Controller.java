@@ -119,7 +119,6 @@ public class HomePage2Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mainCode.socketOut.println("home page");
         myThread = new Thread(new MyThread());
         myThread.start();
     }
@@ -131,16 +130,14 @@ public class HomePage2Controller implements Initializable {
         public void run() {
             while (true){
                 try {
-                    usd = (Currency) mainCode.objIn.readObject();
-                    eur = (Currency) mainCode.objIn.readObject();
-                    toman = (Currency) mainCode.objIn.readObject();
-                    yen = (Currency) mainCode.objIn.readObject();
-                    gbp = (Currency) mainCode.objIn.readObject();
+                    usd = mainCode.usd;
+                    eur = mainCode.eur;
+                    toman = mainCode.toman;
+                    yen = mainCode.yen;
+                    gbp = mainCode.gbp;
                     setPriority(priority, currentSw);
                     Thread.sleep(5000);
-                    if (stop == false)
-                        mainCode.socketOut.println("true");
-                    else
+                    if (stop)
                         break;
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -184,7 +181,6 @@ public class HomePage2Controller implements Initializable {
 
     @FXML
     void onExchangeClick(MouseEvent event) {
-        mainCode.socketOut.println("false");
         Parent root = null;
         try {
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("exchange-page.fxml")));
@@ -202,9 +198,7 @@ public class HomePage2Controller implements Initializable {
     @FXML
     void onFirstClick(MouseEvent event) throws InterruptedException {
         //go to currency page
-        mainCode.socketOut.println("false");
-        mainCode.socketOut.println("currency");
-        mainCode.socketOut.println(first.name);
+        mainCode.currentCurrency = first.name;
         changeScene();
         stop = true;
     }
@@ -212,9 +206,7 @@ public class HomePage2Controller implements Initializable {
     @FXML
     void onSecondClick(MouseEvent event) {
         //go to currency page
-        mainCode.socketOut.println("false");
-        mainCode.socketOut.println("currency");
-        mainCode.socketOut.println(second.name);
+        mainCode.currentCurrency = second.name;
         changeScene();
         stop = true;
     }
@@ -222,9 +214,7 @@ public class HomePage2Controller implements Initializable {
     @FXML
     void onThirdClick(MouseEvent event) {
         //go to currency page
-        mainCode.socketOut.println("false");
-        mainCode.socketOut.println("currency");
-        mainCode.socketOut.println(third.name);
+        mainCode.currentCurrency = third.name;
         changeScene();
         stop = true;
     }
@@ -232,9 +222,7 @@ public class HomePage2Controller implements Initializable {
     @FXML
     void onFourthClick(MouseEvent event) {
         //go to currency page
-        mainCode.socketOut.println("false");
-        mainCode.socketOut.println("currency");
-        mainCode.socketOut.println(forth.name);
+        mainCode.currentCurrency = forth.name;
         changeScene();
         stop = true;
     }
@@ -242,9 +230,7 @@ public class HomePage2Controller implements Initializable {
     @FXML
     void onFifthClick(MouseEvent event) {
         //go to currency page
-        mainCode.socketOut.println("false");
-        mainCode.socketOut.println("currency");
-        mainCode.socketOut.println(fifth.name);
+        mainCode.currentCurrency = fifth.name;
         changeScene();
         stop = true;
     }

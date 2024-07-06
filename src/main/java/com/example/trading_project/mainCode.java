@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+//import java.util.Currency;
 import java.util.Objects;
 
 import INFO.*;
@@ -22,9 +23,18 @@ public class mainCode extends Application{
     public static ObjectOutputStream objOut;
 
     //fields
-    public static account account;
+    public static account  account;
     public static Stage mainStage;
-
+    public static Currency usd;
+    public static Currency eur;
+    public static Currency toman;
+    public static Currency yen;
+    public static Currency gbp;
+    public static String currentCurrency;
+    public static ArrayList<Request> buyRequests;
+    public static ArrayList<Request> sellRequests;
+    public static ArrayList<Request> newBuys = new ArrayList<>();
+    public static ArrayList<Request> newSells = new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -50,6 +60,11 @@ public class mainCode extends Application{
         objIn = new ObjectInputStream(socket.getInputStream());
 
         launch();
+    }
+
+    public static void startMainThread() {
+        Thread mainThread = new Thread(new getInfo());
+        mainThread.start();
     }
 
 }

@@ -52,12 +52,6 @@
          </font>
       </Text>
       <Line fx:id="curr" endX="100.0" layoutX="137.0" layoutY="396.0" startX="-100.0" />
-      <TableView fx:id="table1" layoutX="301.0" layoutY="31.0" prefHeight="217.0" prefWidth="275.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
       <LineChart fx:id="chart" layoutX="260.0" layoutY="265.0" prefHeight="262.0" prefWidth="317.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -67,22 +61,31 @@
         </yAxis>
       </LineChart>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb761030" height="346.0" layoutX="20.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="234.0" />
-      <TableView fx:id="table2" layoutX="586.0" layoutY="31.0" prefHeight="217.0" prefWidth="275.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <TableView fx:id="table3" layoutX="586.0" layoutY="287.0" prefHeight="217.0" prefWidth="275.0">
-         <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-         </columns>
-      </TableView>
       <Button fx:id="backButton" layoutX="20.0" layoutY="489.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="31.0" prefWidth="48.0" style="-fx-background-color: Black; -fx-background-radius: 20;" text="back" textAlignment="CENTER" textFill="#fffbfb">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
+      <TableView fx:id="buyTable" layoutX="299.0" layoutY="16.0" prefHeight="249.0" prefWidth="275.0" style="-fx-background-radius: 20;">
+         <columns>
+            <TableColumn fx:id="totalBuy" prefWidth="92.0" text="مبلغ کل" />
+            <TableColumn fx:id="buyVolume" prefWidth="86.0" text="حجم" />
+            <TableColumn fx:id="buyPrice" prefWidth="95.0" text=" قیمت" />
+         </columns>
+      </TableView>
+      <TableView fx:id="buyTable1" layoutX="583.0" layoutY="272.0" prefHeight="249.0" prefWidth="275.0" style="-fx-background-radius: 20;">
+         <columns>
+            <TableColumn fx:id="totalBuy1" prefWidth="92.0" text="مبلغ کل" />
+            <TableColumn fx:id="buyVolume1" prefWidth="86.0" text="حجم" />
+            <TableColumn fx:id="buyPrice1" prefWidth="95.0" text=" قیمت" />
+         </columns>
+      </TableView>
+      <TableView fx:id="sellTable" layoutX="583.0" layoutY="16.0" prefHeight="249.0" prefWidth="275.0" style="-fx-background-radius: 20;">
+         <columns>
+            <TableColumn fx:id="totalSell" prefWidth="92.0" text="مبلغ کل" />
+            <TableColumn fx:id="sellVolume" prefWidth="86.0" text="حجم" />
+            <TableColumn fx:id="sellPrice" prefWidth="95.0" text=" قیمت" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
