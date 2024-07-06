@@ -22,7 +22,7 @@
                   <Font name="B Titr Bold" size="18.0" />
                </font>
             </Text>
-            <Text layoutX="535.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="پروفایل" wrappingWidth="67.0">
+            <Text fx:id="profile" layoutX="535.0" layoutY="43.0" onMouseClicked="#onProfileClick" strokeType="OUTSIDE" strokeWidth="0.0" text="پروفایل" wrappingWidth="67.0">
                <font>
                   <Font name="B Titr Bold" size="15.0" />
                </font>

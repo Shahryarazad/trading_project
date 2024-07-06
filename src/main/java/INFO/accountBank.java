@@ -66,10 +66,12 @@ public class accountBank extends InputChecker {
         }
         return null;
     }
-    public static account editAccount(String username , String password , String firstname , String lastname, String email , String phoneNumber, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
+    public static account editAccount(String username , String password, String password1 , String firstname , String lastname, String email , String phoneNumber, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
         boolean q2 = false,q3 = false,q4 = false,q5 = false;
         boolean[] pass = passAcceptable(password) , number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
-        if(!pass[0]){
+        if(!password.equals(password1)){
+            passErrorField.setText("Passwords do not match");
+        } else if(!pass[0]){
             passErrorField.setText("Password must be at least 8 characters long");
         }else if(!pass[1]){
             passErrorField.setText("Password must contain a number");

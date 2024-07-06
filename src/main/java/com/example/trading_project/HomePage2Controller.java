@@ -108,6 +108,9 @@ public class HomePage2Controller implements Initializable {
     @FXML
     private Text text55;
 
+    @FXML
+    private Text profile;
+
     String priority = "name";
     boolean swPrice = true, swChange = true, swMaxPrice = true, swMinPrice = true;
     boolean currentSw = true;
@@ -199,7 +202,7 @@ public class HomePage2Controller implements Initializable {
     void onFirstClick(MouseEvent event) throws InterruptedException {
         //go to currency page
         mainCode.currentCurrency = first.name;
-        changeScene();
+        changeScene("Currency-page.fxml", 883, 570);
         stop = true;
     }
 
@@ -207,7 +210,7 @@ public class HomePage2Controller implements Initializable {
     void onSecondClick(MouseEvent event) {
         //go to currency page
         mainCode.currentCurrency = second.name;
-        changeScene();
+        changeScene("Currency-page.fxml", 883, 570);
         stop = true;
     }
 
@@ -215,7 +218,7 @@ public class HomePage2Controller implements Initializable {
     void onThirdClick(MouseEvent event) {
         //go to currency page
         mainCode.currentCurrency = third.name;
-        changeScene();
+        changeScene("Currency-page.fxml", 883, 570);
         stop = true;
     }
 
@@ -223,7 +226,7 @@ public class HomePage2Controller implements Initializable {
     void onFourthClick(MouseEvent event) {
         //go to currency page
         mainCode.currentCurrency = forth.name;
-        changeScene();
+        changeScene("Currency-page.fxml", 883, 570);
         stop = true;
     }
 
@@ -231,8 +234,13 @@ public class HomePage2Controller implements Initializable {
     void onFifthClick(MouseEvent event) {
         //go to currency page
         mainCode.currentCurrency = fifth.name;
-        changeScene();
+        changeScene("Currency-page.fxml", 883, 570);
         stop = true;
+    }
+
+    @FXML
+    void onProfileClick(MouseEvent event) {
+        changeScene("profile.fxml", 705, 577);
     }
 
     public void setPriority(String s, boolean sw) {
@@ -323,17 +331,17 @@ public class HomePage2Controller implements Initializable {
         currencies[j] = temp;
     }
 
-    private void changeScene() {
+    private void changeScene(String path, int width, int height) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Currency-page.fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(path)));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         Scene scene = new Scene(root);
         mainCode.mainStage.setScene(scene);
-        mainCode.mainStage.setWidth(883);
-        mainCode.mainStage.setHeight(570);
+        mainCode.mainStage.setWidth(width);
+        mainCode.mainStage.setHeight(height);
         mainCode.mainStage.show();
     }
 }
