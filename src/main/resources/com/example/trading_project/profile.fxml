@@ -22,7 +22,7 @@
             <Font size="19.0" />
          </font>
       </Text>
-      <Button layoutX="550.0" layoutY="493.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" style="-fx-background-radius: 30; -fx-background-color: #294da1;" text="wallet" textFill="WHITE">
+      <Button layoutX="550.0" layoutY="493.0" mnemonicParsing="false" onAction="#onWalletClick" prefHeight="31.0" prefWidth="69.0" style="-fx-background-radius: 30; -fx-background-color: #294da1;" text="wallet" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -42,7 +42,7 @@
             <Image url="@Images/edit-button.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#294da199" height="369.0" layoutX="49.0" layoutY="105.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="582.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#294da199" height="369.0" layoutX="49.0" layoutY="105.0" mouseTransparent="true" opacity="0.12" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="582.0" />
       <Text fill="#294da1" layoutX="79.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="first name">
          <font>
             <Font name="System Bold" size="15.0" />

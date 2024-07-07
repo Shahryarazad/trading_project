@@ -58,7 +58,7 @@
          </font>
       </Button>
       <Text fx:id="errorText" fill="RED" layoutX="61.0" layoutY="541.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="160.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#418c4999" height="412.0" layoutX="27.0" layoutY="146.0" mouseTransparent="true" opacity="0.12" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="228.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#398348a6" height="412.0" layoutX="27.0" layoutY="146.0" mouseTransparent="true" opacity="0.12" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-height: 50; -fx-arc-width: 50;" width="228.0" />
       <TableView fx:id="sellTable" layoutX="279.0" layoutY="309.0" prefHeight="277.0" prefWidth="241.0" style="-fx-background-radius: 20;">
          <columns>
             <TableColumn fx:id="totalSell" prefWidth="81.0" text="مبلغ کل" />

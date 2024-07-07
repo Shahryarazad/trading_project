@@ -60,7 +60,7 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </LineChart>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb761030" height="346.0" layoutX="20.0" layoutY="113.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="234.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eb761030" height="346.0" layoutX="20.0" layoutY="113.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 50; -fx-arc-height: 50;" width="234.0" />
       <Button fx:id="backButton" layoutX="20.0" layoutY="489.0" mnemonicParsing="false" onAction="#onBackButton" prefHeight="31.0" prefWidth="48.0" style="-fx-background-color: Black; -fx-background-radius: 20;" text="back" textAlignment="CENTER" textFill="#fffbfb">
          <font>
             <Font name="System Bold" size="13.0" />

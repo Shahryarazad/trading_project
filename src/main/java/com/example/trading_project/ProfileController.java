@@ -141,6 +141,21 @@ public class ProfileController implements Initializable {
         edit();
     }
 
+    @FXML
+    void onWalletClick(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("wallet-page.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        mainCode.mainStage.setScene(scene);
+        mainCode.mainStage.setWidth(445);
+        mainCode.mainStage.setHeight(760);
+        mainCode.mainStage.show();
+    }
+
     private void edit() {
         account a = editAccount(mainCode.account.username, password.getText(), password1.getText(), firstName.getText(),
                 lastName.getText(), email.getText(), phoneNumber.getText(),
