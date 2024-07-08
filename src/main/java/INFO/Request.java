@@ -18,6 +18,7 @@ public class Request implements Comparable, Serializable {
     protected double volume;
     protected double totalAmount;
     public Type type;
+    public String currencyName;
 
     public static Comparator<Request> COMPARE_BY_PRICE = new Comparator<Request>() {
         public int compare(Request one, Request other) {
@@ -28,10 +29,20 @@ public class Request implements Comparable, Serializable {
     @Override
     public int compareTo(Object o) {
         Request request = (Request) o;
-        if (this.price > request.price)
-            return 1;
-        else if (this.price < request.price)
-            return -1;
+        if (request.type == Type.Sell) {
+            if (this.price > request.price)
+                return 1;
+            else if (this.price < request.price)
+                return -1;
+            else return 0;
+        }
+        else if (request.type == Type.Buy) {
+            if (this.price > request.price)
+                return -1;
+            else if (this.price < request.price)
+                return +1;
+            else return 0;
+        }
         else return 0;
     }
 
@@ -42,6 +53,7 @@ public class Request implements Comparable, Serializable {
     public Request(account account, Currency currency, double volume, double price, int type) {
         this.account = account;
         this.currency = currency;
+        this.currencyName = currency.name;
         this.volume = volume;
         this.price = price;
         totalAmount = price*volume;
@@ -80,4 +92,7 @@ public class Request implements Comparable, Serializable {
         return type;
     }
 
+    public String getCurrencyName() {
+        return currencyName;
+    }
 }

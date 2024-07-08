@@ -16,6 +16,7 @@ public class Currency implements Serializable {
     public String minPriceStr;
     public float change;
     public String changeStr;
+    public double totalVolume = 0;
     public ArrayList<Double> prices = new ArrayList<>();
 
 

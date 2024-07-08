@@ -66,7 +66,7 @@ public class accountBank extends InputChecker {
         }
         return null;
     }
-    public static account editAccount(String username , String password, String password1 , String firstname , String lastname, String email , String phoneNumber, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
+    public static account editAccount(account a, String username , String password, String password1 , String firstname , String lastname, String email , String phoneNumber, Text passErrorField , Text firstnameErrorField, Text lastnameErrorField, Text emailErrorField, Text phoneErrorField ){
         boolean q2 = false,q3 = false,q4 = false,q5 = false;
         boolean[] pass = passAcceptable(password) , number = phoneNumberAcceptable(phoneNumber),emailE = emailAcceptable(email);
         if(!password.equals(password1)){
@@ -107,8 +107,13 @@ public class accountBank extends InputChecker {
             q5 = true;
         }
         if(q2 && q3 && q4 && q5){
-            account account = new account(username, password, firstname, lastname, email, phoneNumber);
-            return account;
+//            account account = new account(username, password, firstname, lastname, email, phoneNumber);
+            a.password = password;
+            a.firstName = firstname;
+            a.lastName = lastname;
+            a.email = email;
+            a.phoneNumber = phoneNumber;
+            return a;
         }
         return null;
     }

@@ -35,6 +35,7 @@ public class mainCode extends Application{
     public static ArrayList<Request> sellRequests;
     public static ArrayList<Request> newBuys = new ArrayList<>();
     public static ArrayList<Request> newSells = new ArrayList<>();
+    public static ArrayList<Trade> trades = new ArrayList<>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -64,6 +65,7 @@ public class mainCode extends Application{
 
     public static void startMainThread() {
         Thread mainThread = new Thread(new getInfo());
+        mainThread.setPriority(Thread.MAX_PRIORITY);
         mainThread.start();
     }
 

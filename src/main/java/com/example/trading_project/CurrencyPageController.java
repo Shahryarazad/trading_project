@@ -2,6 +2,7 @@ package com.example.trading_project;
 
 import INFO.Currency;
 import INFO.Request;
+import INFO.Trade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,15 +74,26 @@ public class CurrencyPageController implements Initializable {
     private TableColumn<Request, String> totalSell;
 
     @FXML
-    private TableView<?> table3;
+    private TableView<Trade> tradeTable;
+
+    @FXML
+    private TableColumn<Trade, String> tradePrice;
+
+    @FXML
+    private TableColumn<Trade, String> tradeVolume;
+
+    @FXML
+    private TableColumn<Trade, String> totalTrade;
 
     @FXML
     private Button backButton;
 
     Currency currency;
     String currencyStr;
+    double totalVolume;
     ArrayList<Request> buyRequest = new ArrayList<>();
     ArrayList<Request> sellRequest = new ArrayList<>();
+    ArrayList<Trade> trades = new ArrayList<>();
     boolean stop = false;
     XYChart.Series series;
 
@@ -104,9 +116,12 @@ public class CurrencyPageController implements Initializable {
                     currency = findCurrency();
                     buyRequest = mainCode.buyRequests;
                     sellRequest = mainCode.sellRequests;
+                    totalVolume = currency.totalVolume;
+                    trades = mainCode.trades;
                     currencyName.setText(currency.getName());
                     currentPriceText.setText(currency.getCurrentPriceStr());
                     changeText.setText(currency.getChangeStr());
+                    turnoverText.setText(String.valueOf(totalVolume));
                     updateChart(count++, currency);
                     updateTable();
                     Thread.sleep(3000);
@@ -141,15 +156,21 @@ public class CurrencyPageController implements Initializable {
         sellPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         sellVolume.setCellValueFactory(new PropertyValueFactory<>("volume"));
         totalSell.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
+        tradePrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        tradeVolume.setCellValueFactory(new PropertyValueFactory<>("volume"));
+        totalTrade.setCellValueFactory(new PropertyValueFactory<>("totalAmount"));
     }
 
     public void updateTable() {
         buyTable.refresh();
         sellTable.refresh();
+        tradeTable.refresh();
         buyTable.getItems().setAll(filterBuyTable());
         sellTable.getItems().setAll(filterSellTable());
+        tradeTable.getItems().setAll(filterTradeTable());
         buyTable.refresh();
         sellTable.refresh();
+        tradeTable.refresh();
     }
 
     private ArrayList<Request> filterBuyTable() {
@@ -165,6 +186,14 @@ public class CurrencyPageController implements Initializable {
         for (Request r : sellRequest)
             if (r.getCurrency().name.equals(currencyStr))
                 copy.add(r);
+        return copy;
+    }
+
+    private ArrayList<Trade> filterTradeTable() {
+        ArrayList<Trade> copy = new ArrayList<>();
+        for (Trade t : trades)
+            if (t.currencyName.equals(currencyStr))
+                copy.add(t);
         return copy;
     }
 

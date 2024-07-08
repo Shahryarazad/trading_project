@@ -8,7 +8,8 @@ import java.sql.*;
 public class CurrencyHandler implements Runnable{
 
     //fields
-    public static Currency USD, EUR, TOMAN, YEN, GBP;
+    public  Currency USD, EUR, TOMAN, YEN, GBP;
+    public String date;
     static ResultSet resultSet;
     static Connection connection;
 
@@ -47,13 +48,12 @@ public class CurrencyHandler implements Runnable{
     }
 
 
-
-
     @Override
     public void run() {
         try {
 
             while (resultSet.next()) {
+                date = String.valueOf(resultSet.getTimestamp(1));
                 USD.setCurrentPrice(resultSet.getFloat(2));
                 EUR.setCurrentPrice(resultSet.getFloat(3));
                 TOMAN.setCurrentPrice(resultSet.getFloat(4));
@@ -64,5 +64,48 @@ public class CurrencyHandler implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    //getter and setter
+
+    public synchronized  Currency getUSD() {
+        return USD;
+    }
+
+    public synchronized  void setUSD(Currency USD) {
+        this.USD = USD;
+    }
+
+    public synchronized  Currency getEUR() {
+        return EUR;
+    }
+
+    public synchronized void setEUR(Currency EUR) {
+        this.EUR = EUR;
+    }
+
+    public synchronized  Currency getTOMAN() {
+        return TOMAN;
+    }
+
+    public synchronized  void setTOMAN(Currency TOMAN) {
+        this.TOMAN = TOMAN;
+    }
+
+    public synchronized  Currency getYEN() {
+        return YEN;
+    }
+
+    public synchronized  void setYEN(Currency YEN) {
+        this.YEN = YEN;
+    }
+
+    public synchronized  Currency getGBP() {
+        return GBP;
+    }
+
+    public synchronized  void setGBP(Currency GBP) {
+        this.GBP = GBP;
     }
 }

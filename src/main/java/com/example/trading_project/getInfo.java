@@ -18,6 +18,7 @@ public class getInfo implements Runnable{
                 mainCode.gbp = (Currency) mainCode.objIn.readObject();
                 mainCode.buyRequests = (ArrayList<Request>) mainCode.objIn.readObject();
                 mainCode.sellRequests = (ArrayList<Request>) mainCode.objIn.readObject();
+                mainCode.trades = (ArrayList<Trade>) mainCode.objIn.readObject();
                 mainCode.account = (account) mainCode.objIn.readObject();
                 Thread.sleep(5000);
                 mainCode.objOut.writeObject(mainCode.account);

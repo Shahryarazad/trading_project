@@ -142,7 +142,6 @@ public class ExchangePageController  implements Initializable {
             newBuyRequest.add(request);
             a.buyRequest.add(request);
             Collections.sort(buyRequests, Request.COMPARE_BY_PRICE);
-            Collections.reverse(buyRequests);
         }
         else if (request.type == Request.Type.Sell) {
 //            sellRequests.add(request);
@@ -162,7 +161,6 @@ public class ExchangePageController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Thread myThread = new Thread(new MyThread());
-        myThread.setPriority(Thread.MAX_PRIORITY);
         myThread.start();
         findCurrency();
         currenyText.setText("0.0");

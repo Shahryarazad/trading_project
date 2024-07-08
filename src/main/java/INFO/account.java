@@ -67,4 +67,10 @@ public class account implements Serializable {
         else if (t.equals("admin"))
             tier = Tier.ADMIN;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        account a = (account) obj;
+        return this.username.equals(a.username);
+    }
 }

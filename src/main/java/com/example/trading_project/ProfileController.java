@@ -156,8 +156,23 @@ public class ProfileController implements Initializable {
         mainCode.mainStage.show();
     }
 
+    @FXML
+    void onHistoryClick(ActionEvent event) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("history-page.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+        mainCode.mainStage.setScene(scene);
+        mainCode.mainStage.setWidth(820);
+        mainCode.mainStage.setHeight(600);
+        mainCode.mainStage.show();
+    }
+
     private void edit() {
-        account a = editAccount(mainCode.account.username, password.getText(), password1.getText(), firstName.getText(),
+        account a = editAccount(mainCode.account, mainCode.account.username, password.getText(), password1.getText(), firstName.getText(),
                 lastName.getText(), email.getText(), phoneNumber.getText(),
                 passwordError, firstNameError, lastNameError, emailError, phoneError);
         if (a != null) {

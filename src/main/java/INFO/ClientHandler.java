@@ -40,6 +40,7 @@ public class ClientHandler implements Runnable{
                         System.out.println("[SERVER] a client wants to sign up");
                         try {
                             a = (account) objInput.readObject();
+                            Server.accounts.add(a);
                             System.out.println("[SERVER] account received");
                             boolean checkSignUp = account.signUp(a);
                             out.println(checkSignUp);
@@ -71,13 +72,14 @@ public class ClientHandler implements Runnable{
 
         try {
             while (true) {
-                objOutput.writeObject(Server.currencyHandler.USD);
-                objOutput.writeObject(Server.currencyHandler.EUR);
-                objOutput.writeObject(Server.currencyHandler.TOMAN);
-                objOutput.writeObject(Server.currencyHandler.YEN);
-                objOutput.writeObject(Server.currencyHandler.GBP);
-                objOutput.writeObject(Server.buyRequests);
-                objOutput.writeObject(Server.sellRequests);
+                objOutput.writeObject(Server.getCurrencyHandler().getUSD());
+                objOutput.writeObject(Server.getCurrencyHandler().getEUR());
+                objOutput.writeObject(Server.getCurrencyHandler().getTOMAN());
+                objOutput.writeObject(Server.getCurrencyHandler().getYEN());
+                objOutput.writeObject(Server.getCurrencyHandler().getGBP());
+                objOutput.writeObject(Server.getBuyRequests());
+                objOutput.writeObject(Server.getSellRequests());
+                objOutput.writeObject(Server.getTrades());
                 objOutput.writeObject(a);
                 objOutput.reset();
                 System.out.println("[SERVER] info sent");
@@ -87,6 +89,8 @@ public class ClientHandler implements Runnable{
                 ArrayList<Request> newSell = (ArrayList<Request>) objInput.readObject();
                 addToBuy(newBuy);
                 addToSell(newSell);
+                System.out.println(Server.getTrades());
+                System.out.println("*[" + Server.accounts.get(0).trades + "]*");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -114,12 +118,12 @@ public class ClientHandler implements Runnable{
         return null;
     }
 
-    private void addToBuy(ArrayList<Request> buyList) {
+    private synchronized void addToBuy(ArrayList<Request> buyList) {
         for (Request r : buyList)
             Server.buyRequests.add(r);
     }
 
-    private void addToSell(ArrayList<Request> buyList) {
+    private synchronized void addToSell(ArrayList<Request> buyList) {
         for (Request r : buyList)
             Server.sellRequests.add(r);
     }
